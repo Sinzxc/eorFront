@@ -1,0 +1,25 @@
+<div class="burger" (click)="toggleBurger()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+</div>
+<div class="burger-menu-shadow"  [ngStyle]="{ 'opacity': isActive ? '1' : '0' ,'transform': isActive ? 'translateX(0)' : 'translateX(100%)' }" (click)="toggleBurger()" ></div>
+<div class="burger-menu" [ngStyle]="{ 'transform': isActive ? 'translateX(0)' : 'translateX(-100%)' }"  >
+    <div class="profile">
+        
+        <a href="#" class="profile-wrap">
+            <img src="../../assets/header/usericon.png" alt="profile avatar">
+            <p class="profile-info-name">
+               {{user}}
+            </p>
+        </a>
+    </div>
+    <ul>
+        <!-- <div class="exit" (click)="toggleBurger()"></div> -->
+        <li class="link1"><a  href="#">Расписание занятий</a></li>
+        <li class="link2"><a  href="#">Электронный журнал</a></li>
+        <li class="link3"><a  href="#">Дисциплины</a></li>
+        <li class="link4"><a  href="#">Отчёты</a></li>
+        <li class="link5"><a  href="#">Настройки</a></li>
+    </ul>
+</div>

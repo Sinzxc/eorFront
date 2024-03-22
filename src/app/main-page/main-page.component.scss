@@ -1,0 +1,76 @@
+.banner-wrap{
+    display: flex;
+    width: 100vw;
+    height: 500px;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    font-size: 14pt;
+    color: #ffffff30;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+.banner{
+    display: block;
+    position: absolute;
+    top: -5%;
+    width: 110%;
+    height: 110%;
+    background-image: url(../../assets/homePage/banner.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: -1;
+}
+.title{
+    display: flex;
+    margin-left: 45px;
+    align-items: center;
+    gap: 40px;
+}
+.container1{
+    padding: 30px;
+    font-size: 26pt;
+}
+.nav-wrap{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 60px;
+    margin-bottom: 10px;
+}
+.btn{
+    display: block;
+    width: 9px;
+    height: 18px;
+    background: url(../../assets/homePage/corusel-btn.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: scaleX(-1);
+    cursor: pointer;
+}
+.nav-wrap input{
+    border: 0;
+    width: 500px;
+    height: 50px;
+    background-color: #4163CF20;
+    border-radius: 10px;
+    font-size: 14pt;
+    padding-left: 15px;
+    padding-right:50px;
+}
+.input-wrap{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.input-wrap button{
+    width: 20px;
+    height: 20px;
+    background: url(../../assets/header/search.svg);
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    right: 15px;
+    border: 0;
+   
+}

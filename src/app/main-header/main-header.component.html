@@ -1,0 +1,26 @@
+<header>
+    <div class="logo">
+        <a href="#">
+            <img src="../../assets/header/logo.svg" alt="">
+        </a>
+        
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#">Расписание занятий</a></li>
+            <li><a href="#">Электронный журнал</a></li>
+            <li><a href="#">Дисциплины</a></li>
+            <li><a href="#">Отчёты</a></li>
+            <li><a href="#">Настройки</a></li>
+        </ul>
+    </nav>
+    <app-burger-menu [user]="user"></app-burger-menu>
+    <div class="profile">
+        <a href="#" class="profile-wrap">
+            <img src="../../assets/header/usericon.png" alt="profile avatar">
+            <p class="profile-info-name">
+                {{user}}
+            </p>
+        </a>
+    </div>
+</header>

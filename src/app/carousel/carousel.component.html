@@ -1,0 +1,11 @@
+<div class="carousel-container">
+  <button (click)="prevSlide()" class="backBtn"></button>
+  <div class="carousel-slide">
+    <ng-container *ngFor="let cardGroup of cards; let i = index">
+      <div *ngIf="i === currentIndex" class="card-group">
+        <app-card *ngFor="let card of cardGroup" [title]="card.title" [img]="card.img" [link]="card.link"></app-card>
+      </div>
+    </ng-container>
+  </div>
+  <button (click)="nextSlide()" class="nextBtn"></button>
+</div>

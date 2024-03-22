@@ -1,0 +1,24 @@
+button{
+    width: 15px;
+    height: 35px;
+    background: none repeat scroll 0;
+    border: none;
+    background-image: url(../../assets/homePage/corusel-btn.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+.carousel-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nextBtn{
+    transform: rotate(180deg);
+}
+.card-group{
+    display: flex;
+    justify-content: space-between;
+    width: 90vw;
+    margin-top: 30px;
+}
