@@ -72,5 +72,33 @@
     background-size: cover;
     right: 15px;
     border: 0;
-   
+}
+
+@media (max-width: 1000px) {
+    .nav-wrap{
+        gap: 20px;
+        flex-direction: column;
+    }
+    .nav-wrap input{
+        display: none;
+    }
+    .nav-wrap button{
+        display: none;
+    }
+    .title h2{
+        font-size: 20px;
+    }
+    .banner{
+        background-position: -400px;
+    }
+}
+@media (max-width: 500px) {
+    .banner{
+        background-position: -500px;
+    }
+}
+@media (max-width: 450px) {
+    .banner-wrap{
+        font-size: 12pt;
+    }
 }
