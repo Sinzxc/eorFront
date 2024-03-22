@@ -91,10 +91,17 @@
     .banner{
         background-position: -400px;
     }
+    .title{
+        margin: 0 auto;
+    }
 }
 @media (max-width: 500px) {
-    .banner{
+    .banner-wrap{
         background-position: -500px;
+        height: 300px;
+    }
+    .banner{
+        background-position:-230px;
     }
 }
 @media (max-width: 450px) {
