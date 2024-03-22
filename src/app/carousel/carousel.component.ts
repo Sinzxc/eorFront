@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CardComponent } from '../card/card.component';
 import { CommonModule } from '@angular/common';
-
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
@@ -10,7 +10,8 @@ import { CommonModule } from '@angular/common';
   imports: 
   [
   CardComponent,
-  CommonModule
+  CommonModule,
+  NgbCarouselModule
 ]
 })
 export class CarouselComponent {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarouselComponent } from '../carousel/carousel.component';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainHeaderComponent  } from '../main-header/main-header.component';
 @Component({
   selector: 'app-main-page',
@@ -9,10 +10,11 @@ import { MainHeaderComponent  } from '../main-header/main-header.component';
   [
     CommonModule,
     CarouselComponent,
-    MainHeaderComponent
+    MainHeaderComponent,
+    NgbCarouselModule 
   ],
   templateUrl: './main-page.component.html',
-  styleUrl: './main-page.component.scss'
+  styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent {
   backgroundPosition = {};
