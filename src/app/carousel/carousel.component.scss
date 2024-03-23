@@ -12,17 +12,41 @@ button{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-top: 10px;
 }
 .nextBtn{
     transform: rotate(180deg);
 }
-.card-group{
+.card-group {
     display: flex;
     justify-content: space-between;
     width: 90vw;
     margin-top: 30px;
 }
-.cards-wrap{
+
+.cards-wrap {
     display: flex;
     gap: 20px;
+}
+.ngb-carousel {
+    width: 100%;
+}
+.carousel-container{
+    width: 100%;
+    justify-content: center;
+}
+.carousel{
+    width: 90%;
+}
+.cards-wrap{
+    justify-content: space-between;
+}
+
+:host ::ng-deep .carousel-control-prev{
+    left: -10%;
+    filter: invert(1);
+}
+:host ::ng-deep .carousel-control-next{
+    right: -10%;
+    filter: invert(1);
 }

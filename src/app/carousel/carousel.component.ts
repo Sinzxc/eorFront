@@ -18,15 +18,15 @@ export class CarouselComponent {
   cards = [
     [
       { title: 'Card 1', img: '../../assets/homePage/card-img.png',link:'#' },
-      { title: 'Card 2', img: '../../assets/homePage/card-img.png',link:'#' },
-      { title: 'Card 3', img: '../../assets/homePage/card-img.png',link:'#' },
-      { title: 'Card 4', img: '../../assets/homePage/card-img.png',link:'#' }
+      { title: 'Card 2', img: '../../assets/homePage/card-img1.png',link:'#' },
+      { title: 'Card 3', img: '../../assets/homePage/card-img2.png',link:'#' },
+      { title: 'Card 4', img: '../../assets/homePage/card-img3.png',link:'#' }
     ],
     [
-      { title: 'Card 5', img: '../../assets/homePage/card-img.png',link:'#' },
-      { title: 'Card 6', img: '../../assets/homePage/card-img.png',link:'#' },
-      { title: 'Card 7', img: '../../assets/homePage/card-img.png',link:'#' },
-      { title: 'Card 8', img: '../../assets/homePage/card-img.png',link:'#' }
+      { title: 'Card 5', img: '../../assets/homePage/card-img4.png',link:'#' },
+      { title: 'Card 6', img: '../../assets/homePage/card-img5.png',link:'#' },
+      { title: 'Card 7', img: '../../assets/homePage/card-img6.png',link:'#' },
+      { title: 'Card 8', img: '../../assets/homePage/card-img7.png',link:'#' }
     ],
     // Добавьте больше массивов карточек, если необходимо
   ];

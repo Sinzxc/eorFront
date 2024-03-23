@@ -8,11 +8,15 @@
     </ng-container>
   </div>
   <button (click)="nextSlide()" class="nextBtn"></button> -->
+  <div id="carousel-container" class="carousel-container">
     <ngb-carousel>
       <ng-template ngbSlide *ngFor="let cardGroup of cards; let i = index">
         <div class="cards-wrap">
           <app-card *ngFor="let card of cardGroup" [title]="card.title" [img]="card.img" [link]="card.link"></app-card>
         </div>
       </ng-template>
-   </ngb-carousel>
+    </ngb-carousel>
+  </div>
+  
+  
 </div>
