@@ -1,0 +1,16 @@
+.courses {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Автоматические столбцы */
+    gap: 20px;
+    grid-auto-flow: row;
+}
+
+@media (max-width: 768px) {
+    .courses {
+        grid-template-columns: repeat(1fr);
+    }
+    .course{
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,6 @@
+<app-main-header></app-main-header>
+<div class="container">
+    <div class="courses">
+        <app-card class="course" *ngFor="let course of cards; let i = index" [title]="course.title" [link]="course.link" [img]="course.img"></app-card>
+    </div>
+</div>
