@@ -1,0 +1,6 @@
+<app-main-header></app-main-header>
+<div class="container">
+    <div class="lessons">
+        <app-time-item *ngFor="let time of times; let i = index" [number]="(i+1).toString()" [title]="time.title" [teacher]="time.teacher" [classRoom]="time.classRoom"></app-time-item>
+    </div>
+</div>

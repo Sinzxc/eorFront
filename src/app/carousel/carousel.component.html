@@ -12,7 +12,7 @@
     <ngb-carousel>
       <ng-template ngbSlide *ngFor="let cardGroup of cards; let i = index">
         <div class="cards-wrap">
-          <app-card *ngFor="let card of cardGroup" [title]="card.title" [img]="card.img" [link]="card.link"></app-card>
+          <app-card class="card-item" *ngFor="let card of cardGroup" [title]="card.title" [img]="card.img" [link]="card.link"></app-card>
         </div>
       </ng-template>
     </ngb-carousel>
