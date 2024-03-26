@@ -1,52 +1,39 @@
-button{
+.carousel {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+  
+  .slide {
+    text-align: center;
+  }
+  
+  .slide img {
+    max-width: 100%;
+    height: auto;
+  }
+  .prevBtn,.nextBtn {
+    background-color: #ffffff00;
+    display: block;
     width: 15px;
     height: 35px;
-    background: none repeat scroll 0;
+    cursor: pointer;
     border: none;
+  }
+  .prevBtn{
     background-image: url(../../assets/homePage/corusel-btn.svg);
-    background-size: cover;
     background-repeat: no-repeat;
-    
-}
-.carousel-container{
+    background-size: contain;
+  }
+  .nextBtn{
+    background-image: url(../../assets/homePage/corusel-btn.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: scaleX(-1);
+  }
+  .carousel-wrap{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 10px;
-}
-.nextBtn{
-    transform: rotate(180deg);
-}
-.card-group {
-    display: flex;
-    justify-content: space-between;
-    width: 90vw;
-    margin-top: 30px;
-}
-
-.cards-wrap {
-    display: flex;
-    gap: 20px;
-}
-.ngb-carousel {
-    width: 100%;
-}
-.carousel-container{
-    width: 100%;
-    justify-content: center;
-}
-.carousel{
-    width: 90%;
-}
-.cards-wrap{
-    justify-content: space-between;
-}
-
-:host ::ng-deep .carousel-control-prev{
-    left: -10%;
-    filter: invert(1);
-}
-:host ::ng-deep .carousel-control-next{
-    right: -10%;
-    filter: invert(1);
-}
+    margin: 0 auto;
+  }

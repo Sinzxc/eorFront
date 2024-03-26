@@ -21,3 +21,10 @@ h3{
 a{
     text-decoration: none;
 }
+
+@media (max-width:415px) {
+    .card{
+        width: 250px;
+        height: 250px;
+    }
+}

@@ -1,22 +1,11 @@
 <div class="carousel-container">
-  <!-- <button (click)="prevSlide()" class="backBtn"></button>
-  <div class="carousel-slide">
-    <ng-container *ngFor="let cardGroup of cards; let i = index">
-      <div *ngIf="i === currentIndex" class="card-group">
-        <app-card *ngFor="let card of cardGroup" [title]="card.title" [img]="card.img" [link]="card.link"></app-card>
+  <div class="carousel-wrap">
+    <button (click)="slickModal.slickPrev()" class="prevBtn"></button>
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let card of cards" class="slide">
+        <app-card class="card-item" [title]="card.title" [img]="card.img" [link]="card.link"></app-card>
       </div>
-    </ng-container>
+    </ngx-slick-carousel>
+    <button (click)="slickModal.slickNext()" class="nextBtn"></button>
   </div>
-  <button (click)="nextSlide()" class="nextBtn"></button> -->
-  <div id="carousel-container" class="carousel-container">
-    <ngb-carousel>
-      <ng-template ngbSlide *ngFor="let cardGroup of cards; let i = index">
-        <div class="cards-wrap">
-          <app-card class="card-item" *ngFor="let card of cardGroup" [title]="card.title" [img]="card.img" [link]="card.link"></app-card>
-        </div>
-      </ng-template>
-    </ngb-carousel>
-  </div>
-  
-  
 </div>
