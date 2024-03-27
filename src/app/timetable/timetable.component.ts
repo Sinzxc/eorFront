@@ -17,6 +17,7 @@ export class TimetableComponent {
       { title: 'МДК 03.01', classRoom: '31',teacher:'Погорелова М.Н' },
       { title: 'МДК 03.01', classRoom: '31',teacher:'Погорелова М.Н' },
       { title: 'МДК 03.01', classRoom: '31',teacher:'Погорелова М.Н' },
+      { title: 'МДК 03.01', classRoom: '31',teacher:'Погорелова М.Н' },
       { title: 'МДК 03.01', classRoom: '31',teacher:'Погорелова М.Н' }
     ]
 }

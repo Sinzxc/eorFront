@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CarouselComponent } from '../carousel/carousel.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainHeaderComponent  } from '../main-header/main-header.component';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-main-page',
   standalone: true,
@@ -11,7 +12,8 @@ import { MainHeaderComponent  } from '../main-header/main-header.component';
     CommonModule,
     CarouselComponent,
     MainHeaderComponent,
-    NgbCarouselModule 
+    NgbCarouselModule ,
+    RouterModule
   ],
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],

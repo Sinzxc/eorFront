@@ -10,7 +10,7 @@
     display: none;
 }
 .burger-menu{
-    width: 60vw;
+    width: 65vw;
     height: 100vh;
     position: absolute;
     left: 0;
@@ -89,6 +89,7 @@
     list-style: none;
     display: flex;
     justify-content: center;
+    margin-right: 5x;
 }
 .burger-menu li::after{
     content: "";
