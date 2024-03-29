@@ -2,3 +2,12 @@
     <div class="banner" [ngStyle]="backgroundPosition"></div>
     <p>Электронный образовательный ресурс</p>
 </div>
+<div *ngIf="response">
+    <div>
+      <p>Id: {{ response.id }}</p>
+      <p>Title: {{ response.title }}</p>
+      <p>User Id: {{ response.userId }}</p>
+      <p>Completed: {{ response.completed }}</p>
+    </div>
+  </div>
+  

@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
-
+import { Component,OnInit } from '@angular/core';
+import { TestService } from '../../services/testService/test.service';
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss'
 })
-export class MainPageComponent {
+export class MainPageComponent implements OnInit {
   backgroundPosition = {};
+  response:any;
+
+  constructor(private testService: TestService) {}
 
   onMouseMove(event: MouseEvent) {
     const xOffset = (window.innerWidth / 2 - event.clientX) / 60;
@@ -15,4 +18,11 @@ export class MainPageComponent {
       transform: `translate(${xOffset}px, ${yOffset}px)`
     };
   }
+  ngOnInit(): void {
+    this.testService.fetchData().subscribe((response: any) => {
+      console.log(response);
+      this.response =response;
+    });   
+  } 
+  
 }

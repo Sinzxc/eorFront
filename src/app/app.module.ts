@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
+import { TestService } from './services/testService/test.service';
 
 @NgModule({
   declarations: [
@@ -17,9 +20,10 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [TestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

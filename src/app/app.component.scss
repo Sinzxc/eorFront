@@ -45,3 +45,8 @@
         transform: scale(0);
     }
 }
+@media (max-width:1200px) {
+    .nav-link{
+        font-size: 8pt;
+    }
+}
