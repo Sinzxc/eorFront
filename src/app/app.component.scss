@@ -1,0 +1,47 @@
+.bg-body-tertiary{
+    background-color: #4163CF !important;   
+}
+.nav-link{
+    color: #fff;
+}
+.navbar-toggler{
+    filter: invert(1);
+}
+.navbar-nav .nav-link {
+    transition: 0.3s;
+    position: relative;
+}
+.nav-link::after{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+    transform: scale(0);
+    transition: 0.3s;
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+}
+  
+.nav-link:hover.nav-link::after {
+    transform: scale(1);
+}
+.profile-link:hover.nav-link::after{
+    transform: scale(0);
+}
+.profile-link img{
+    transition: 0.2s;
+}
+.profile-link:hover{
+    img{
+        transform: scale(1.1);
+    }
+}
+  
+
+@media (max-width:992px) {
+    .nav-link:hover.nav-link::after {
+        transform: scale(0);
+    }
+}
