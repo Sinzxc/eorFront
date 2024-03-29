@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { TestService } from './services/testService/test.service';
+import { AuthIntercepter } from './intercept/auth.intercepter';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { TestService } from './services/testService/test.service';
     RouterModule,
     HttpClientModule
   ],
-  providers: [TestService],
+  providers: [TestService,AuthIntercepter],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

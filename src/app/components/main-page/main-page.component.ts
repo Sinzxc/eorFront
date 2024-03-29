@@ -19,10 +19,17 @@ export class MainPageComponent implements OnInit {
     };
   }
   ngOnInit(): void {
-    this.testService.fetchData().subscribe((response: any) => {
-      console.log(response);
-      this.response =response;
-    });   
+    // this.testService.fetchData().subscribe((response: any) => {
+    //   console.log(response);  
+    //   this.response =response;
+    // });   
+    const data = { username:"admin",password:"admin" }; // Your data object to be sent
+    console.log("data created");
+    this.testService.postData(data).subscribe(response => {
+      console.log('Response:', response);
+    }, error => {
+      console.error('Error:', error);
+    });
   } 
   
 }

@@ -10,7 +10,7 @@ export class TestService {
   constructor(private http: HttpClient) {
     console.log('Testing');
   }
-  fetchData(): Observable<any> {
-    return this.http.get('https://jsonplaceholder.typicode.com/todos/2');
+  postData(data: any): Observable<any> {
+    return this.http.post<any>('http://localhost:3000/api/signin', data);
   }
 }
