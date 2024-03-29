@@ -2,7 +2,7 @@
     <div class="banner" [ngStyle]="backgroundPosition"></div>
     <p>Электронный образовательный ресурс</p>
 </div>
-<div *ngIf="response">
+<!-- <div *ngIf="response">
     <div>
       <p>Id: {{ response.id }}</p>
       <p>Title: {{ response.title }}</p>
@@ -10,4 +10,44 @@
       <p>Completed: {{ response.completed }}</p>
     </div>
   </div>
-  
+   -->
+<div class="container-fluid">
+  <div class="row justify-content-around align-items-center my-3 flex-column flex-md-column flex-lg-row">
+    <div class="col-12 col-lg-5 my-3 my-lg-0 d-flex align-items-center justify-content-center justify-content-lg-between">
+      <a href="" class="courses-link">
+        Ваши курсы
+        <i class="fas fa-arrow-right mx-2"></i>
+      </a>
+      
+    </div>
+    <div class="col-10 col-lg-5 col-md-7">
+      <form #myForm="ngForm" (click)="submitForm()" class="d-flex align-items-center">
+        <input class="form-control form-control-lg mx-3" name="searchInput" id="searchInput"  type="text" placeholder="Поиск.." aria-label="Поиск.." required ngModel>    
+        <button type="submit" class="btn btn-primary">Поиск</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container ">
+  <div class="row">
+    <div class="col-12">
+      <div class="alert alert-danger" role="alert" *ngIf="searchError">
+        {{searchError}}
+      </div>
+    </div>
+  </div>
+</div>
+@if (cards.length > 0) {
+  <div class="cards-container d-fex flex-column flex-md-column flex-lg-row">
+    <div *ngFor="let card of cards" class="mb-3">
+        <app-carousel-card class="card-item" [title]="card.title" [img]="card.img" [link]="card.link"></app-carousel-card>
+    </div>
+  </div>
+}
+@else {
+  <div class="container my-5 py-lg-5">
+    <div class="alert alert-danger my-5" role="alert">
+      У вас пока нет курсов
+    </div>
+  </div>
+}

@@ -42,3 +42,12 @@
         font-size: 12pt;
     }
 }
+.cards-container{
+    display: flex;
+    justify-content: space-around;
+}
+.courses-link{
+    font-size: 15pt;
+    text-decoration: none;
+    color: #000;
+}
