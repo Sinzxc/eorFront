@@ -46,6 +46,7 @@ export class MainPageComponent implements OnInit {
 
   constructor(private testService: TestService) {}
   submitForm() {
+    this.searchError='';
     const searchValue = (document.getElementById('searchInput') as HTMLInputElement).value;
     if (searchValue==''){
       this.searchError = 'Пожалуйста введите значение';
@@ -53,7 +54,7 @@ export class MainPageComponent implements OnInit {
     }else
     {
     console.log('Search query:', searchValue);
-    (document.getElementById('searchInput') as HTMLInputElement).value = '';
+
     }
   }
   

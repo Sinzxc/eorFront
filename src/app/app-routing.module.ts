@@ -6,7 +6,7 @@ import { CoursesPageComponent } from './components/courses-page/courses-page.com
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect empty path to '/home'
   { path: 'home', component: MainPageComponent },
-  { path: 'courses', component: CoursesPageComponent }
+  { path: 'timetable', component: CoursesPageComponent }
 ];
 
 @NgModule({

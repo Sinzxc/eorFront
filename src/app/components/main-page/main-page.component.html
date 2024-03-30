@@ -1,6 +1,8 @@
-<div class="banner-wrap" (mousemove)="onMouseMove($event)">
+<div class="container-fluid m-0 p-0">
+  <div class="banner-wrap" (mousemove)="onMouseMove($event)">
     <div class="banner" [ngStyle]="backgroundPosition"></div>
     <p>Электронный образовательный ресурс</p>
+</div>
 </div>
 <!-- <div *ngIf="response">
     <div>
@@ -11,10 +13,10 @@
     </div>
   </div>
    -->
-<div class="container-fluid">
+<div class="container-fluid cards">
   <div class="row justify-content-around align-items-center my-3 flex-column flex-md-column flex-lg-row">
     <div class="col-12 col-lg-5 my-3 my-lg-0 d-flex align-items-center justify-content-center justify-content-lg-between">
-      <a href="" class="courses-link">
+      <a routerLink="/courses" class="courses-link">
         Ваши курсы
         <i class="fas fa-arrow-right mx-2"></i>
       </a>
