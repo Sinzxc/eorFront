@@ -52,10 +52,7 @@ export class MainPageComponent implements OnInit {
       console.log(this.searchError);
     }else
     {
-    // Далее можно выполнить какую-либо логику с полученными данными, например, отправить запрос на сервер
     console.log('Search query:', searchValue);
-        
-    // Очищаем поле ввода после отправки формы
     (document.getElementById('searchInput') as HTMLInputElement).value = '';
     }
   }

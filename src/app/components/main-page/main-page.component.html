@@ -21,7 +21,7 @@
       
     </div>
     <div class="col-10 col-lg-5 col-md-7">
-      <form #myForm="ngForm" (click)="submitForm()" class="d-flex align-items-center">
+      <form #myForm="ngForm" (submit)="submitForm()" class="d-flex align-items-center">
         <input class="form-control form-control-lg mx-3" name="searchInput" id="searchInput"  type="text" placeholder="Поиск.." aria-label="Поиск.." required ngModel>    
         <button type="submit" class="btn btn-primary">Поиск</button>
       </form>
