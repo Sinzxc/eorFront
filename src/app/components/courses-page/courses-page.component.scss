@@ -1,0 +1,35 @@
+.card{
+    position: relative;
+    justify-content: center;
+}
+.card:hover.card::after{
+    opacity: 1;
+}
+.card::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 100%;
+    background: url(../../../assets/time-item/left-bar.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.5;
+    transition: 0.3s;
+}
+.card-number{
+    position: absolute;
+    color: #fff;
+    left: 10px;
+    top: 44%;
+    z-index: 1;
+}
+@media (max-width: 400px) {
+    .card-text{
+        font-size: 10pt;
+    }
+    .card-number{
+        top: 46%;
+    }
+}

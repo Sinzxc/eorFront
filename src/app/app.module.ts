@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { TestService } from './services/testService/test.service';
 import { AuthIntercepter } from './intercept/auth.intercepter';
+import { CoursesPageComponent } from './components/courses-page/courses-page.component';
 
 
 
@@ -20,7 +21,8 @@ import { AuthIntercepter } from './intercept/auth.intercepter';
   declarations: [
     AppComponent,
     MainPageComponent,
-    CarouselCardComponent
+    CarouselCardComponent,
+    CoursesPageComponent
   ],
   imports: [
     BrowserModule,
