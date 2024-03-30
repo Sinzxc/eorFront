@@ -11,7 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { TestService } from './services/testService/test.service';
 import { AuthIntercepter } from './intercept/auth.intercepter';
-import { CoursesPageComponent } from './components/courses-page/courses-page.component';
+import {TimetablePageComponent } from './components/timetable-page/timetable-pagecomponent';
+import {CoursesPageComponent } from './components/courses-page/courses-page.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 
 
 
@@ -22,7 +24,9 @@ import { CoursesPageComponent } from './components/courses-page/courses-page.com
     AppComponent,
     MainPageComponent,
     CarouselCardComponent,
-    CoursesPageComponent
+    TimetablePageComponent,
+    CoursesPageComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,

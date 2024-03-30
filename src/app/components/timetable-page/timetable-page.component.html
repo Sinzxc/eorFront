@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row my-3 flex-column flex-md-row">
+        <div class="col">
+            <select class="form-select my-3 my-md-0" aria-label="Default select example">
+                <option *ngFor="let date of dates; let i = index" value="1">{{date.date}}</option>
+              </select>
+        </div>
+        <div class="col"></div>
+        <div class="col">
+            <select class="form-select" aria-label="Default select example">
+                <option *ngFor="let group of groups; let i = index" value="1">{{group.group}}</option>
+              </select>
+        </div>
+    </div>
+</div>
+<div class="container">
+    @if (times.length!=0) {
+        <div class="row mb-3"  *ngFor="let time of times; let i = index">
+            <div class="col">
+            
+                    <div class="card p-lg-4">
+                        <div class="card-number">
+                            {{time.pare}}
+                        </div>
+                        <div class="card-body d-flex align-items-center">
+                            <div class="col-6">
+                                <h5 class="card-title m-0">{{time.title}}</h5> 
+                            </div>
+                            <div class="col">
+                                <p class="card-text"><i class="fa fa-user mx-1" aria-hidden="true"></i>{{time.teacher}}</p>
+                                <p class="card-text"><i class="fa fa-location-arrow mx-1" aria-hidden="true"></i>{{time.classRoom}}</p>
+                            </div>
+                        </div>
+                    </div>            
+            </div>
+        </div>
+    }
+    @else{
+        <div class="row mb-3">
+            <div class="col">
+                <div class="card p-lg-4 error-card">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="col text-center">
+                            <h5 class="card-title m-0">Нет занятий</h5> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

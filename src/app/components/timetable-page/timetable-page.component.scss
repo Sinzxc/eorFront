@@ -1,0 +1,48 @@
+.card{
+    position: relative;
+    justify-content: center;
+}
+.card:hover.card::after{
+    opacity: 1;
+}
+.card::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 100%;
+    background: url(../../../assets/time-item/left-bar.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.5;
+    transition: 0.3s;   
+}
+.error-card::after{
+   display: none;
+}
+.card-number{
+    position: absolute;
+    color: #fff;
+    left: 10px;
+    top: 44%;
+    z-index: 1;
+}
+@media (max-width: 993px) {
+    .card-text{
+        font-size: 10pt;
+    }
+    .card-number{
+        top: 38%;
+        left: 5px;
+    }
+    .card::after{
+        background-size: cover;
+        width: 16px;
+        opacity: 1;
+    }
+    .card-body{
+        margin-left: 20px;
+        
+    }
+}
