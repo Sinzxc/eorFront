@@ -1,0 +1,145 @@
+
+//background image
+.bg-pic2 {
+    position: fixed;
+    width: 102vw;
+    height: 102vh;
+    background-image: url(../../../assets/auth/login-img.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    right: -5px;
+    left: -5px;
+}
+
+.auth-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff9;
+    backdrop-filter: blur(5px);
+}
+.auth-img{
+    display: block;
+    height: 100vh;
+    width: 100%;
+   
+}
+.auth-wrap{
+    display: grid;
+    grid-template-columns: auto 375px; 
+    overflow: hidden;
+}
+.auth-form-wrap{
+    text-align: center;
+}
+.auth-form-wrap h1{
+    font-size: 24pt;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+.auth-form-wrap h2{
+    font-size: 13pt;
+    font-weight: 300;
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+.auth-form-inputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 10px;
+    margin-bottom: 50px;
+}
+.auth-form-inputs input{
+    width: 230px;
+    height: 30px;
+    border-radius: 20px;
+    border: #808080 1px solid ;
+    padding-left: 30px;
+    font-size: 11pt;
+    position: relative;
+}
+.auth-input{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+#username::before{
+    background: url(../../../assets/auth/User.svg) no-repeat;
+}
+#password::before{
+    background: url(../../../assets/auth/Password.svg) no-repeat;
+}
+.auth-input::before{
+    z-index: 1;
+    content: "";
+    position: absolute;
+    display: block;
+    width: 13px;
+    height: 13px;
+    background-size: contain;
+    left: 15px;
+}
+.auth-input input::placeholder{
+    color: #808080;
+    opacity: 0.5;
+}
+.recover-pass{
+    font-size: 10pt;
+    opacity:0.5;
+    color: #000000;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    transition: 0.2s;
+}
+.recover-pass:hover{
+    opacity: 0.8;
+    transform: scale(1.02);
+}
+
+.auth-form-wrap button {
+    width: 200px;
+    height: 45px;
+    border-radius: 20px;
+    border: none;
+    font-size: 16pt;
+    font-weight: 300;
+    font-family: "Roboto", sans-serif;
+    background-color: #4163CF;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.auth-form-wrap button:hover{
+    opacity: 0.8;
+    transform: scale(1.02);
+}
+
+@media (max-width:576px) {
+    .auth-img{
+        display: none;
+    }
+    .auth-wrap{
+        display: grid;
+        grid-template-columns: auto; 
+        height: 100vh;
+        position: relative;
+    }
+}
+
+@media (max-width:265px) {
+    .auth-form-inputs input{
+        width: 100%;
+    }
+    .auth-form-wrap button{
+        width: 100%;
+    }
+}

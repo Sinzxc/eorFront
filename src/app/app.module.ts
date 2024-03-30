@@ -14,6 +14,7 @@ import { AuthIntercepter } from './intercept/auth.intercepter';
 import {TimetablePageComponent } from './components/timetable-page/timetable-pagecomponent';
 import {CoursesPageComponent } from './components/courses-page/courses-page.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
 
 
 
@@ -26,7 +27,8 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
     CarouselCardComponent,
     TimetablePageComponent,
     CoursesPageComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
