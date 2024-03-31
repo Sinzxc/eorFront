@@ -15,8 +15,7 @@ import {TimetablePageComponent } from './components/timetable-page/timetable-pag
 import {CoursesPageComponent } from './components/courses-page/courses-page.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
-
-
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 
@@ -37,9 +36,9 @@ import { LoginPageComponent } from './components/login-page/login-page.component
     RouterModule,
     HttpClientModule,
     CommonModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [TestService,AuthIntercepter],
+  providers: [TestService,AuthIntercepter,JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,19 +1,30 @@
 <div  class="bg-pic2"></div>
     <div class="auth-wrap">
         <div class="auth-img"></div>
-        <form class="auth-form" action="http://localhost:3000/api/signin" method="post">
+        <form class="auth-form" action="http://localhost:3000/api/signin" method="post" name="form"  #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
             <div class="auth-form-wrap">
                 <h1>Добро пожаловать</h1>
                 <h2>Электронный образовательный ресурс МГГТК ФГБОУ ВО «АГУ»</h2>
                 <div class="auth-form-inputs">
                     <label id="username" class="auth-input">
-                        <input type="text" required="true" name="username" placeholder="Имя пользователя">
+                        <input type="text" [(ngModel)]="form.username"  required="true" name="username" #username="ngModel" placeholder="Имя пользователя">
                     </label>
                     <label id="password" required="true" class="auth-input">
-                        <input name="password" required="true"  type="password" placeholder="Пароль">
-                        <a href="#qwe" class="recover-pass">Забыли пароль?</a>
+                        <input name="password" required="true"  [(ngModel)]="form.password" #password="ngModel"  type="password" placeholder="Пароль">
+                        <!-- <a href="#qwe" class="recover-pass">Забыли пароль?</a> -->
                     </label>
                 </div>
+                @if (errors!='') {
+                    <div class="container">
+                        <div class="row">
+                            <div class="col mx-5">
+                                <div class="alert alert-danger" role="alert">
+                                    {{errors}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
                 <button type="submit">Войти</button>
             </div>
         </form>

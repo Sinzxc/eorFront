@@ -36,4 +36,7 @@ export class TokenStorageService {
 
     return {}
   }
+  public getUserDate(): any {
+    return 
+  }
 }

@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
-import { HttpInterceptor, HttpHandler, HttpRequest,HttpEvent } from "@angular/common/http";
+import { HttpInterceptor, HttpHandler, HttpRequest,HttpEvent, HTTP_INTERCEPTORS } from "@angular/common/http";
+
 import { Observable } from "rxjs";
 import { TokenStorageService } from "../services/tokenService/token-storage.service";
 const TOKEN_HEADER_KEY = 'Authorization'
 
 @Injectable()   
-export class AuthIntercepter {
+export class AuthIntercepter implements HttpInterceptor {
     constructor(private token: TokenStorageService) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -23,3 +24,7 @@ export class AuthIntercepter {
         return next.handle(authReq)
     }
 }
+
+export const authInterceptorProviders = [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthIntercepter, multi: true}
+]
