@@ -19,7 +19,7 @@ export class ProfilePageComponent implements OnInit {
   ) {}
 
   isLoggedIn: boolean = false;
-  user:any={name:"",sname:"",patronym:""};
+  user!:Person;
   async ngOnInit(): Promise<void> {
     if (!this.tokenStorage.getToken()) {
       this.router.navigate(['/login']).then(() => window.location.reload());
@@ -28,8 +28,13 @@ export class ProfilePageComponent implements OnInit {
 
     this.isLoggedIn = true;
     const response = await this.studentService.getStudent(this.tokenStorage.getUser().userId).toPromise(); 
-    const responseObject = JSON.parse(response);
-    this.user=responseObject.person
+    if (response) {
+      const responseObject: Person = response;
+      this.user = responseObject;
+    } else {
+      console.error('Response data not found');
+}
+
 }
 
 

@@ -21,7 +21,7 @@ export class StudentService {
   //   return this.http.post<Person>(url, {userId}, httpOptions);
   // }
 
-  getStudent(userId: string): Observable<any> {
-    return this.http.post(BASE_URL,{userId}, {responseType: 'text'})
+  getStudent(userId: string): Observable<Person> {
+    return this.http.post<Person>(BASE_URL,{userId}, {responseType: 'json'})
   }
 }
