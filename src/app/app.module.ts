@@ -16,6 +16,7 @@ import {CoursesPageComponent } from './components/courses-page/courses-page.comp
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
 
 
 
@@ -27,7 +28,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
     TimetablePageComponent,
     CoursesPageComponent,
     ProfilePageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,

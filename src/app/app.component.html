@@ -12,12 +12,17 @@
           <li class="nav-item border-bottom">
             <a class="nav-link d-flex align-items-center d-block d-lg-none m-3" routerLink="/user-profile">
               <img src="../assets/header/usericon.png" alt="Аватар пользователя">
-              <p class="mx-2 mb-0">{{user}}</p>
+              <p class="mx-2 mb-0">{{user?.name + " " + user?.sname}}</p>
             </a>
           </li>
           <li class="nav-item mx-3 my-1 ">
             <a class="nav-link d-lg-none d-block" aria-current="page" routerLink="/home">Главная</a>
           </li>
+          @if (isAdmin) {
+            <li class="nav-item mx-3 my-1 ">
+              <a class="nav-link" aria-current="page" routerLink="/admin">Администрирование</a>
+            </li>
+          }
           <li class="nav-item mx-3 my-1 ">
             <a class="nav-link "routerLink="/timetable">Расписание занятий</a>
           </li>
@@ -38,7 +43,7 @@
       <div class="profile">
         <a class="nav-link align-items-center d-none d-lg-flex profile-link" routerLink="/user-profile">
           <img src="../assets/header/usericon.png" alt="Аватар пользователя">
-          <p class="mx-2 mb-0">{{user}}</p>
+          <p class="mx-2 mb-0">{{user?.name + " " + user?.sname}}</p>
         </a>
       </div>
     </div>

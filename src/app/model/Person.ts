@@ -1,5 +1,6 @@
 export interface Person {
-    Name: string;
-    Surname: string;
-    Patronym: string;
+    _id:string;
+    name: string;
+    sname: string;
+    patronym: string;
 }

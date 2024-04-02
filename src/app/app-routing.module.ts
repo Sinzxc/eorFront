@@ -5,6 +5,7 @@ import { TimetablePageComponent } from './components/timetable-page/timetable-pa
 import { CoursesPageComponent } from './components/courses-page/courses-page.component';
 import {  ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect empty path to '/home'
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'timetable', component: TimetablePageComponent },
   { path: 'user-profile', component: ProfilePageComponent }, 
   { path: 'login', component: LoginPageComponent }, 
-  { path: 'server-error', component: CoursesPageComponent }
+  { path: 'server-error', component: CoursesPageComponent },
+  { path: 'admin', component: AdminPageComponent}
 ];
 
 @NgModule({
