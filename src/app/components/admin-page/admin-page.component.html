@@ -27,11 +27,11 @@
                               <form>
                                 <div class="mb-3">
                                   <label for="UsernameInput" class="form-label">Имя польлзователя</label>
-                                  <input type="text" class="form-control" id="UsernameInput" aria-describedby="usernameHelp">
+                                  <input type="text" class="form-control" id="UsernameInput" aria-describedby="usernameHelp" [(ngModel)]="this.creatingUsername" [ngModelOptions]="{standalone: true}">
                                 </div>
                                 <div class="mb-3">
                                   <label for="PasswordInput" class="form-label">Пароль</label>
-                                  <input type="text" class="form-control" id="UsernameInput" aria-describedby="usernameHelp">
+                                  <input type="text" class="form-control" id="PasswordInput" aria-describedby="usernameHelp" [(ngModel)]="this.creatingPassword" [ngModelOptions]="{standalone: true}">
                                 </div>
                                 <button type="submit" class="btn btn-primary" (click)="createUser()">Создать</button>
                               </form>
@@ -71,29 +71,113 @@
             <div class="card p-3">
               <div class="container-fluid">
                   <div class="row">
-                      <div class="col-12 col-md-4">
-                          <ul class="list-group">
-                              <li class="list-group-item active" aria-current="true">An active item</li>
-                              <li class="list-group-item">A second item</li>
-                              <li class="list-group-item">A third item</li>
-                              <li class="list-group-item">A fourth item</li>
-                              <li class="list-group-item">And a fifth one</li>
-                          </ul>
-                      </div>
+                    <div class="col-12 col-md-4 h-auto d-flex justify-content-between flex-column">
+                      @if (!subjectCreating) {
+                        <button type="button" class="btn btn-primary w-100 mb-2" (click)="subjectcreateChanged()">Добавить предмет</button>
+                      }
+                      @else{
+                        <button type="button" class="btn btn-primary w-100 mb-2" (click)="subjectcreateChanged()">Изменить предмет</button>
+                      }
+                      
+                      <select class="form-select h-100" size="5" aria-label="Single select example" [disabled]="userCreating" [(ngModel)]="selectedUser" (ngModelChange)="onSelectionChange($event)">
+                        @for (item of subjects; track $index) {
+                        <option [ngValue]="item">{{item.name}}</option>
+                        }
+                      </select>
+                      
+                    
+                  </div>
                       <div class="col-12 col-md-8">
-                          <form>
+                          @if(subjectCreating){
+                            <form>
                               <div class="mb-3">
-                                <label for="SubjectInput" class="form-label">Название предмета</label>
-                                <input type="text" class="form-control" id="SubjectInput" aria-describedby="subjectHelp">
-                                <div id="subjectHelp" class="form-text">Введите название предмета</div>
+                                <label for="UsernameInput" class="form-label">Название предмета</label>
+                                <input type="text" class="form-control" id="UsernameInput" aria-describedby="usernameHelp" [(ngModel)]="this.creatingUsername" [ngModelOptions]="{standalone: true}">
                               </div>
-                              <button type="submit" class="btn btn-primary">Сохранить</button>
+                              <button type="submit" class="btn btn-primary" (click)="createUser()">Создать</button>
                             </form>
+                            @if (creatingError){
+                              <div class="alert alert-danger mt-3" role="alert">
+                                {{creatingError}}
+                              </div>
+                            }
+                          }
+                          @else{
+                              <form>
+                                <div class="mb-3">
+                                  <label for="PassInput" class="form-label">Название предмета</label>
+                                  <input type="text" class="form-control" id="PassInput">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Изменить</button>
+                              </form>
+                              @if (changeError) {
+                                <div class="alert alert-danger mt-3" role="alert">
+                                  {{changeError}}
+                                </div>
+                              }
+                          }
                       </div>
                   </div>
               </div>
           </div>
-          </ng-template>
+        </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>Группы</a>
+          <ng-template ngbNavContent>
+            <div class="card p-3">
+              <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-12 col-md-4 h-auto d-flex justify-content-between flex-column">
+                      @if (!subjectCreating) {
+                        <button type="button" class="btn btn-primary w-100 mb-2" (click)="subjectcreateChanged()">Добавить группу</button>
+                      }
+                      @else{
+                        <button type="button" class="btn btn-primary w-100 mb-2" (click)="subjectcreateChanged()">Изменить группу</button>
+                      }
+                      
+                      <select class="form-select h-100" size="5" aria-label="Single select example" [disabled]="userCreating" [(ngModel)]="selectedUser" (ngModelChange)="onSelectionChange($event)">
+                        @for (item of groups; track $index) {
+                        <option [ngValue]="item">{{item.name}}</option>
+                        }
+                      </select>
+                      
+                    
+                  </div>
+                      <div class="col-12 col-md-8">
+                          @if(subjectCreating){
+                            <form>
+                              <div class="mb-3">
+                                <label for="UsernameInput" class="form-label">Название предмета</label>
+                                <input type="text" class="form-control" id="UsernameInput" aria-describedby="usernameHelp" [(ngModel)]="this.creatingUsername" [ngModelOptions]="{standalone: true}">
+                              </div>
+                              <button type="submit" class="btn btn-primary" (click)="createUser()">Создать</button>
+                            </form>
+                            @if (creatingError){
+                              <div class="alert alert-danger mt-3" role="alert">
+                                {{creatingError}}
+                              </div>
+                            }
+                          }
+                          @else{
+                              <form>
+                                <div class="mb-3">
+                                  <label for="PassInput" class="form-label">Название предмета</label>
+                                  <input type="text" class="form-control" id="PassInput">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Изменить</button>
+                              </form>
+                              @if (changeError) {
+                                <div class="alert alert-danger mt-3" role="alert">
+                                  {{changeError}}
+                                </div>
+                              }
+                          }
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </ng-template>
         </li>
       </ul>
       <div [ngbNavOutlet]="nav"></div>
