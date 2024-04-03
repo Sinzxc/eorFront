@@ -1,29 +1,64 @@
 <div class="container my-3">      
     <ul ngbNav #nav="ngbNav" class="nav-tabs">
         <li ngbNavItem>
-          <a ngbNavLink>Предметы</a>
+          <a ngbNavLink>Пользователи</a>
           <ng-template ngbNavContent>
             <div class="card p-3">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-12 col-md-4">
-                            <ul class="list-group">
-                                <li class="list-group-item active" aria-current="true">An active item</li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
-                                <li class="list-group-item">A fourth item</li>
-                                <li class="list-group-item">And a fifth one</li>
-                            </ul>
-                        </div>
+                      <div class="col-12 col-md-4 h-auto d-flex justify-content-between flex-column">
+                        @if (!userCreating) {
+                          <button type="button" class="btn btn-primary w-100 mb-2" (click)="createChanged()">Добавить пользователя</button>
+                        }
+                        @else{
+                          <button type="button" class="btn btn-primary w-100 mb-2" (click)="createChanged()">Изменить пользователя</button>
+                        }
+                        
+                        <select class="form-select h-100" size="5" aria-label="Single select example" [disabled]="userCreating" [(ngModel)]="selectedUser" (ngModelChange)="onSelectionChange($event)">
+                          @for (item of users; track $index) {
+                          <option [ngValue]="item">{{item.username}}</option>
+                          }
+                        </select>
+                        
+                      
+                    </div>
                         <div class="col-12 col-md-8">
-                            <form>
+                            @if(userCreating){
+                              <form>
                                 <div class="mb-3">
-                                  <label for="SubjectInput" class="form-label">Название предмета</label>
-                                  <input type="text" class="form-control" id="SubjectInput" aria-describedby="subjectHelp">
-                                  <div id="subjectHelp" class="form-text">Введите название предмета</div>
+                                  <label for="UsernameInput" class="form-label">Имя польлзователя</label>
+                                  <input type="text" class="form-control" id="UsernameInput" aria-describedby="usernameHelp">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Сохранить</button>
+                                <div class="mb-3">
+                                  <label for="PasswordInput" class="form-label">Пароль</label>
+                                  <input type="text" class="form-control" id="UsernameInput" aria-describedby="usernameHelp">
+                                </div>
+                                <button type="submit" class="btn btn-primary" (click)="createUser()">Создать</button>
                               </form>
+                              @if (creatingError){
+                                <div class="alert alert-danger mt-3" role="alert">
+                                  {{creatingError}}
+                                </div>
+                              }
+                            }
+                            @else{
+                                <form>
+                                  <div class="mb-3">
+                                    <label for="PassInput" class="form-label">Введите пароль</label>
+                                    <input type="text" class="form-control" id="PassInput">
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="Pass2Input" class="form-label">Подтвердите пароль</label>
+                                    <input type="text" class="form-control" id="Pass2Input">
+                                  </div>
+                                  <button type="submit" class="btn btn-primary">Изменить</button>
+                                </form>
+                                @if (changeError) {
+                                  <div class="alert alert-danger mt-3" role="alert">
+                                    {{changeError}}
+                                  </div>
+                                }
+                            }
                         </div>
                     </div>
                 </div>
@@ -31,8 +66,34 @@
           </ng-template>
         </li>
         <li ngbNavItem>
-          <a ngbNavLink>Second Richard</a>
-          <ng-template ngbNavContent>Second Dick</ng-template>
+          <a ngbNavLink>Предметы</a>
+          <ng-template ngbNavContent>
+            <div class="card p-3">
+              <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-12 col-md-4">
+                          <ul class="list-group">
+                              <li class="list-group-item active" aria-current="true">An active item</li>
+                              <li class="list-group-item">A second item</li>
+                              <li class="list-group-item">A third item</li>
+                              <li class="list-group-item">A fourth item</li>
+                              <li class="list-group-item">And a fifth one</li>
+                          </ul>
+                      </div>
+                      <div class="col-12 col-md-8">
+                          <form>
+                              <div class="mb-3">
+                                <label for="SubjectInput" class="form-label">Название предмета</label>
+                                <input type="text" class="form-control" id="SubjectInput" aria-describedby="subjectHelp">
+                                <div id="subjectHelp" class="form-text">Введите название предмета</div>
+                              </div>
+                              <button type="submit" class="btn btn-primary">Сохранить</button>
+                            </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          </ng-template>
         </li>
       </ul>
       <div [ngbNavOutlet]="nav"></div>

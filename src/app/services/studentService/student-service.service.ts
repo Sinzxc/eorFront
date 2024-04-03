@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Person } from '../../model/Person';
 
-const BASE_URL = 'http://192.168.3.206:3000/api/user/getUser';
+const BASE_URL = 'http://192.168.0.102:3000/api/user/getUser';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
