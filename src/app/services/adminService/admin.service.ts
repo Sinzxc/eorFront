@@ -5,7 +5,7 @@ import { User } from '../../model/User';
 import { Subject} from '../../model/Subject';
 import { Group} from '../../model/Group';
 
-const BASE_URL = 'http://192.168.154.206:3000/api';
+const BASE_URL = 'http://192.168.0.101:3000/api';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -28,7 +28,11 @@ export class AdminService {
     return this.http.post<Group[]>(BASE_URL+"/user/getAllGroups", httpOptions)
   }
 
-  registerUser(username: string, password: string){
-    return this.http.post<Response>(BASE_URL+"/auth/signup",{username,password}, httpOptions)
+  registerUser(username: string, password: string,name:string,sname:string){
+    return this.http.post<Response>(BASE_URL+"/auth/signup",{username,password,name,sname}, httpOptions)
+  }
+
+  updateUser(mainUsername:string, username: string, password: string,name:string,sname:string){
+    return this.http.post<Response>(BASE_URL+"/user/updateUser",{mainUsername,username,password,name,sname}, httpOptions)
   }
 }

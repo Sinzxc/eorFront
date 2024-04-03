@@ -33,6 +33,14 @@
                                   <label for="PasswordInput" class="form-label">Пароль</label>
                                   <input type="text" class="form-control" id="PasswordInput" aria-describedby="usernameHelp" [(ngModel)]="this.creatingPassword" [ngModelOptions]="{standalone: true}">
                                 </div>
+                                <div class="mb-3">
+                                  <label for="NameInput" class="form-label">Имя</label>
+                                  <input type="text" class="form-control" id="NameInput" [(ngModel)]="this.creatingName" [ngModelOptions]="{standalone: true}">
+                                </div>
+                                <div class="mb-3">
+                                  <label for="SnameInput" class="form-label">Фамилия</label>
+                                  <input type="text" class="form-control" id="SnameInput" [(ngModel)]="this.creatingSname" [ngModelOptions]="{standalone: true}">
+                                </div>
                                 <button type="submit" class="btn btn-primary" (click)="createUser()">Создать</button>
                               </form>
                               @if (creatingError){
@@ -44,18 +52,26 @@
                             @else{
                                 <form>
                                   <div class="mb-3">
-                                    <label for="PassInput" class="form-label">Введите пароль</label>
-                                    <input type="text" class="form-control" id="PassInput">
+                                    <label for="PassInput" class="form-label">Имя пользователя</label>
+                                    <input type="text" class="form-control" id="PassInput" [(ngModel)]="this.changingUsername" [ngModelOptions]="{standalone: true}">
                                   </div>
                                   <div class="mb-3">
-                                    <label for="Pass2Input" class="form-label">Подтвердите пароль</label>
-                                    <input type="text" class="form-control" id="Pass2Input">
+                                    <label for="Pass2Input" class="form-label">Новый пароль (по необходимости)</label>
+                                    <input type="text" class="form-control" id="Pass2Input" [(ngModel)]="this.changingPassword" [ngModelOptions]="{standalone: true}">
                                   </div>
-                                  <button type="submit" class="btn btn-primary">Изменить</button>
+                                  <div class="mb-3">
+                                    <label for="NameInput2" class="form-label">Имя</label>
+                                    <input type="text" class="form-control" id="NameInput" [(ngModel)]="this.changingName" [ngModelOptions]="{standalone: true}">
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="SnameInput2" class="form-label">Фамилия</label>
+                                    <input type="text" class="form-control" id="SnameInput" [(ngModel)]="this.changingSname" [ngModelOptions]="{standalone: true}">
+                                  </div>
+                                  <button type="submit" class="btn btn-primary" (click)="updateUser()">Изменить</button>
                                 </form>
-                                @if (changeError) {
+                                @if (changingError) {
                                   <div class="alert alert-danger mt-3" role="alert">
-                                    {{changeError}}
+                                    {{changingError}}
                                   </div>
                                 }
                             }
@@ -110,9 +126,9 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary">Изменить</button>
                               </form>
-                              @if (changeError) {
+                              @if (changingError) {
                                 <div class="alert alert-danger mt-3" role="alert">
-                                  {{changeError}}
+                                  {{changingError}}
                                 </div>
                               }
                           }
@@ -167,9 +183,9 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary">Изменить</button>
                               </form>
-                              @if (changeError) {
+                              @if (changingError) {
                                 <div class="alert alert-danger mt-3" role="alert">
-                                  {{changeError}}
+                                  {{changingError}}
                                 </div>
                               }
                           }
