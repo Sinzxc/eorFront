@@ -9,5 +9,9 @@ export interface User {
         name: string;
         sname: string;
         patronym: string;
+    };
+    group:{
+        _id:string;
+        name:string
     }
 }

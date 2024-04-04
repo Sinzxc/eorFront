@@ -11,7 +11,7 @@ import { Group } from '../../model/Group';
 @Component({
   selector: 'app-admin-page',
   templateUrl: './admin-page.component.html',
-  styleUrls: ['./admin-page.component.scss'],
+  styleUrls: ['./admin-page.component.scss']
 })
 export class AdminPageComponent implements OnInit {
   constructor(
@@ -100,6 +100,8 @@ export class AdminPageComponent implements OnInit {
     this.changingUsername =this.selectedUser?.username;
     this.changingName =this.selectedUser?.person.name;
     this.changingSname =this.selectedUser?.person.sname;
+    this.changeSelectedGroup=this.selectedUser?.group as Group;
+    console.log(this.changeSelectedGroup)
   }
 
   onGroupSelectionChange(event: any) {

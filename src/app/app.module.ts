@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { NgForm } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CarouselCardComponent} from './components/carousel-card/carousel-card.component';
@@ -38,7 +39,7 @@ import { AdminPageComponent } from './components/admin-page/admin-page.component
     RouterModule,
     HttpClientModule,
     CommonModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,

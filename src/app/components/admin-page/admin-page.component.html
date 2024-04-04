@@ -43,9 +43,11 @@
                                 </div>
                                 <div class="mb-3">
                                   <label for="SnameInput" class="form-label">Группа</label>
-                                  <select class="form-select h-100" [(ngModel)]="changeSelectedGroup" (ngModelChange)="onGroupSelectionChange($event)"  [ngModelOptions]="{standalone: true}">
-                                    <option *ngFor="let item of groups; let i = index" [ngValue]="item">{{ item.name }}</option>
-                                  </select>                                  
+                                  <select class="form-select h-100"  [(ngModel)]="changeSelectedGroup" (ngModelChange)="onGroupSelectionChange($event)"  [ngModelOptions]="{standalone: true}">
+                                    @for (item of groups; track item) {
+                                      <option [ngValue]="item">{{ item.name }}</option>
+                                    }
+                                  </select>                                   
                                 </div>
                                 <button type="submit" class="btn btn-primary" (click)="createUser()">Создать</button>
                               </form>
@@ -73,6 +75,14 @@
                                     <label for="SnameInput2" class="form-label">Фамилия</label>
                                     <input type="text" class="form-control" id="SnameInput" [(ngModel)]="this.changingSname" [ngModelOptions]="{standalone: true}">
                                   </div>
+                                   <div class="mb-3">
+                                  <label for="SnameInput" class="form-label">Группа</label>
+                                  <select class="form-select h-100" [(ngModel)]="changeSelectedGroup" (ngModelChange)="onGroupSelectionChange($event)"  [ngModelOptions]="{standalone: true}">
+                                    @for (item of groups; track item._id) {
+                                      <option [ngValue]="item._id">{{ item.name }}</option>
+                                    }
+                                  </select>                                  
+                                </div>
                                   <button type="submit" class="btn btn-primary" (click)="updateUser()">Изменить</button>
                                 </form>
                                 @if (changingError) {
