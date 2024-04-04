@@ -16,7 +16,7 @@
                         
                         <select class="form-select h-100" size="5" aria-label="Single select example" [disabled]="userCreating" [(ngModel)]="selectedUser" (ngModelChange)="onSelectionChange($event)">
                           @for (item of users; track $index) {
-                          <option [ngValue]="item">{{item.username}}</option>
+                          <option [ngValue]="item">{{item.person.name+" "+item.person.sname}}</option>
                           }
                         </select>
                         
@@ -40,6 +40,12 @@
                                 <div class="mb-3">
                                   <label for="SnameInput" class="form-label">Фамилия</label>
                                   <input type="text" class="form-control" id="SnameInput" [(ngModel)]="this.creatingSname" [ngModelOptions]="{standalone: true}">
+                                </div>
+                                <div class="mb-3">
+                                  <label for="SnameInput" class="form-label">Группа</label>
+                                  <select class="form-select h-100" [(ngModel)]="changeSelectedGroup" (ngModelChange)="onGroupSelectionChange($event)"  [ngModelOptions]="{standalone: true}">
+                                    <option *ngFor="let item of groups; let i = index" [ngValue]="item">{{ item.name }}</option>
+                                  </select>                                  
                                 </div>
                                 <button type="submit" class="btn btn-primary" (click)="createUser()">Создать</button>
                               </form>

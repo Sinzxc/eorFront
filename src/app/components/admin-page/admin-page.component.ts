@@ -43,6 +43,7 @@ export class AdminPageComponent implements OnInit {
   changingSname?: string;
 
   selectedUser: User | null = null;
+  changeSelectedGroup: Group| null = null;
 
   async ngOnInit() {
     if (!this.tokenStorage.getToken()) {
@@ -53,11 +54,17 @@ export class AdminPageComponent implements OnInit {
     this.getUsers();
     this.getSubjects();
     this.getGroups();
-    setInterval(() => {
+    setTimeout(() => {
       this.getUsers();
       this.getSubjects();
-      this.getGroups();
+      var selectedTemp = this.changeSelectedGroup;
+      this.getGroups().then(() => {
+        this.changeSelectedGroup = selectedTemp;
+      }).catch(error => {
+        console.error('Error while getting groups:', error);
+      });
     }, 5000);
+    
   }
 
   createChanged(): void {
@@ -68,11 +75,14 @@ export class AdminPageComponent implements OnInit {
     this.subjectCreating = !this.subjectCreating;
   }
 
+
   async getUsers() {
     this.adminService.getAllUsers().subscribe((newUsers) => {
-      this.users = newUsers;
+      this.users = newUsers.sort((a, b) =>{
+        return a.person.name.localeCompare(b.person.name);
     });
-  }
+  }, (err) => {});
+}
 
   async getSubjects() {
     this.adminService.getAllSubjects().subscribe((newSubject) => {
@@ -87,10 +97,12 @@ export class AdminPageComponent implements OnInit {
   }
 
   onSelectionChange(event: any) {
-    console.log('Selected user:', this.selectedUser);
     this.changingUsername =this.selectedUser?.username;
     this.changingName =this.selectedUser?.person.name;
     this.changingSname =this.selectedUser?.person.sname;
+  }
+
+  onGroupSelectionChange(event: any) {
   }
 
   async createUser() {
@@ -119,15 +131,41 @@ export class AdminPageComponent implements OnInit {
           this.creatingSname = '';
           break;
         default:
-          this.creatingError = 'Не известная ошибка';
+          this.creatingError = 'Неизвестная ошибка';
           break;
       }
     }
   }
 
   updateUser(){
+    if(this.selectedUser==null)
+      return;
     this.changingError = '';
-    this.adminService.updateUser(this.selectedUser!.username!,this.changingUsername!,this.changingPassword!,this.changingName!,this.changingSname!).subscribe((newGroup) => {
-    });
+    try{
+      if(this.changingPassword=='')
+        this.adminService.updateUser(this.selectedUser!.username!,this.changingUsername!,this.selectedUser!.password!,this.changingName!,this.changingSname!).subscribe((newGroup) => {
+        });
+      else
+        this.adminService.updateUser(this.selectedUser!.username!,this.changingUsername!,this.changingPassword!,this.changingName!,this.changingSname!).subscribe((newGroup) => {
+        });
+
+      this.changingUsername = '';
+      this.changingPassword = '';
+      this.changingName = '';
+      this.changingSname = '';
+    }catch(error){
+      switch ((error as HttpErrorResponse).status) {
+        case 404:
+          this.creatingError = 'Пользователя не существует';
+          break;
+        case 500:
+          this.creatingError = 'Ошибка сервера';
+          break;
+        default:
+          this.creatingError = 'Неизвестная ошибка';
+          break;
+      }
+    }
+    
   }
 }
