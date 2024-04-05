@@ -100,8 +100,11 @@ export class AdminPageComponent implements OnInit {
     this.changingUsername =this.selectedUser?.username;
     this.changingName =this.selectedUser?.person.name;
     this.changingSname =this.selectedUser?.person.sname;
-    this.changeSelectedGroup=this.selectedUser?.group as Group;
-    console.log(this.changeSelectedGroup)
+    this.groups?.forEach(element=> {
+      if(element._id == this.selectedUser?.group._id){
+      this.changeSelectedGroup = element;
+      }
+      })
   }
 
   onGroupSelectionChange(event: any) {

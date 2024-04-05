@@ -5,7 +5,7 @@ import { User } from '../../model/User';
 import { Subject} from '../../model/Subject';
 import { Group} from '../../model/Group';
 
-const BASE_URL = 'http://192.168.50.206:3000/api';
+const BASE_URL = 'http://192.168.0.101:3000/api';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
