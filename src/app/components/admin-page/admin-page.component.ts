@@ -54,16 +54,6 @@ export class AdminPageComponent implements OnInit {
     this.getUsers();
     this.getSubjects();
     this.getGroups();
-    setTimeout(() => {
-      this.getUsers();
-      this.getSubjects();
-      var selectedTemp = this.changeSelectedGroup;
-      this.getGroups().then(() => {
-        this.changeSelectedGroup = selectedTemp;
-      }).catch(error => {
-        console.error('Error while getting groups:', error);
-      });
-    }, 5000);
     
   }
 
@@ -107,6 +97,30 @@ export class AdminPageComponent implements OnInit {
       })
   }
 
+  deleteUser(){
+    try{
+          this.adminService.deleteUser(this.selectedUser?.username!).subscribe((newGroup) => {
+      });      
+      this.changingUsername = undefined;
+      this.changingPassword = undefined;
+      this.changingName = undefined;
+      this.changingSname = undefined;
+      this.changeSelectedGroup=null;
+    }catch(error){
+      switch ((error as HttpErrorResponse).status) {
+        case 404:
+          this.creatingError = 'Пользователя не существует';
+          break;
+        case 500:
+          this.creatingError = 'Ошибка сервера';
+          break;
+        default:
+          this.creatingError = 'Неизвестная ошибка';
+          break;
+      }
+    }
+  }
+
   onGroupSelectionChange(event: any) {
   }
 
@@ -147,17 +161,13 @@ export class AdminPageComponent implements OnInit {
       return;
     this.changingError = '';
     try{
-      if(this.changingPassword=='')
-        this.adminService.updateUser(this.selectedUser!.username!,this.changingUsername!,this.selectedUser!.password!,this.changingName!,this.changingSname!).subscribe((newGroup) => {
-        });
-      else
-        this.adminService.updateUser(this.selectedUser!.username!,this.changingUsername!,this.changingPassword!,this.changingName!,this.changingSname!).subscribe((newGroup) => {
-        });
-
-      this.changingUsername = '';
-      this.changingPassword = '';
-      this.changingName = '';
-      this.changingSname = '';
+      this.adminService.updateUser(this.selectedUser!.username!,this.changingUsername!,this.changingPassword!,this.changingName!,this.changingSname!,this.changeSelectedGroup?._id!).subscribe((newGroup) => {
+      });      
+      this.changingUsername = undefined;
+      this.changingPassword = undefined;
+      this.changingName = undefined;
+      this.changingSname = undefined;
+      this.changeSelectedGroup=null;
     }catch(error){
       switch ((error as HttpErrorResponse).status) {
         case 404:
@@ -171,6 +181,7 @@ export class AdminPageComponent implements OnInit {
           break;
       }
     }
-    
   }
+  
 }
+

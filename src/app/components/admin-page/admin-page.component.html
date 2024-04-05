@@ -58,32 +58,33 @@
                               }
                             }
                             @else{
-                                <form>
-                                  <div class="mb-3">
+                                <form >
+                                  <div class="mb-3" >
                                     <label for="PassInput" class="form-label">Имя пользователя</label>
-                                    <input type="text" class="form-control" id="PassInput" [(ngModel)]="this.changingUsername" [ngModelOptions]="{standalone: true}">
+                                    <input type="text" class="form-control" id="PassInput" [disabled]="this.selectedUser==undefined" [(ngModel)]="this.changingUsername" [ngModelOptions]="{standalone: true}">
                                   </div>
                                   <div class="mb-3">
                                     <label for="Pass2Input" class="form-label">Новый пароль (по необходимости)</label>
-                                    <input type="text" class="form-control" id="Pass2Input" [(ngModel)]="this.changingPassword" [ngModelOptions]="{standalone: true}">
+                                    <input type="text" class="form-control" id="Pass2Input" [disabled]="this.selectedUser==undefined" [(ngModel)]="this.changingPassword" [ngModelOptions]="{standalone: true}">
                                   </div>
                                   <div class="mb-3">
                                     <label for="NameInput2" class="form-label">Имя</label>
-                                    <input type="text" class="form-control" id="NameInput" [(ngModel)]="this.changingName" [ngModelOptions]="{standalone: true}">
+                                    <input type="text" class="form-control" id="NameInput" [disabled]="this.selectedUser==undefined" [(ngModel)]="this.changingName" [ngModelOptions]="{standalone: true}">
                                   </div>
                                   <div class="mb-3">
                                     <label for="SnameInput2" class="form-label">Фамилия</label>
-                                    <input type="text" class="form-control" id="SnameInput" [(ngModel)]="this.changingSname" [ngModelOptions]="{standalone: true}">
+                                    <input type="text" class="form-control" id="SnameInput" [disabled]="this.selectedUser==undefined" [(ngModel)]="this.changingSname" [ngModelOptions]="{standalone: true}">
                                   </div>
                                    <div class="mb-3">
                                   <label for="SnameInput" class="form-label">Группа</label>
-                                  <select class="form-select h-100" [(ngModel)]="changeSelectedGroup" (ngModelChange)="onGroupSelectionChange($event)"  [ngModelOptions]="{standalone: true}">
+                                  <select class="form-select h-100" [(ngModel)]="changeSelectedGroup"  [disabled]="this.selectedUser==undefined"  (ngModelChange)="onGroupSelectionChange($event)"  [ngModelOptions]="{standalone: true}">
                                     @for (item of groups; track item) {
                                       <option [ngValue]="item">{{ item.name }}</option>
                                     }
                                   </select>                                  
                                 </div>
-                                  <button type="submit" class="btn btn-primary" (click)="updateUser()">Изменить</button>
+                                  <button type="submit" class="btn btn-primary" [disabled]="this.selectedUser==undefined" (click)="updateUser()">Изменить</button>
+                                  <button type="submit" class="btn btn-danger mx-3" [disabled]="this.selectedUser==undefined" (click)="deleteUser()">Удалить</button>
                                 </form>
                                 @if (changingError) {
                                   <div class="alert alert-danger mt-3" role="alert">
