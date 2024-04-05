@@ -5,7 +5,7 @@ import { User } from '../../model/User';
 import { Subject} from '../../model/Subject';
 import { Group} from '../../model/Group';
 
-const BASE_URL = 'http://192.168.43.206:3000/api';
+const BASE_URL = 'http://192.168.0.103:3000/api';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -38,5 +38,9 @@ export class AdminService {
 
   deleteUser(username:string){
     return this.http.post<Response>(BASE_URL+"/user/deleteUser",{username}, httpOptions)
+  }
+
+  createSubject(name:string){
+    return this.http.post<Response>(BASE_URL+"/user/addSubject",{name}, httpOptions)
   }
 }
