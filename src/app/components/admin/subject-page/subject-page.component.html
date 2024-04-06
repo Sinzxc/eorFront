@@ -9,7 +9,7 @@
               <button type="button" class="btn btn-primary w-100 mb-2" (click)="subjectcreateChanged()">Изменить предмет</button>
             }
             
-            <select class="form-select h-100" size="5" aria-label="Single select example" [(ngModel)]="selectedSubject" (ngModelChange)="onSelectionChange($event)">
+            <select class="form-select h-100" size="5" aria-label="Single select example" [disabled]="subjectCreating" [(ngModel)]="selectedSubject" (ngModelChange)="onSelectionChange($event)">
               @for (item of subjects; track $index) {
               <option [ngValue]="item">{{item.name}}</option>
               }
@@ -36,9 +36,10 @@
                     <form>
                       <div class="mb-3">
                         <label for="PassInput" class="form-label">Название предмета</label>
-                        <input type="text" class="form-control" id="PassInput">
+                        <input type="text" class="form-control" [disabled]="this.selectedSubject==null" [(ngModel)]="this.changingSubjectName" id="PassInput" [ngModelOptions]="{standalone: true}">
                       </div>
-                      <button type="submit" class="btn btn-primary">Изменить</button>
+                      <button type="submit" [disabled]="this.selectedSubject==null" class="btn btn-primary" (click)="changeSubject()">Изменить</button>
+                      <button type="submit" [disabled]="this.selectedSubject==null" class="btn mx-3 btn-danger" (click)="deleteSubject()">Удалить</button>
                     </form>
                     @if (changingError) {
                       <div class="alert alert-danger mt-3" role="alert">

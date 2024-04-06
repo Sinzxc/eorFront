@@ -1,0 +1,53 @@
+<div class="card p-3">
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-md-4 h-auto d-flex justify-content-between flex-column">
+            @if (!groupCreating) {
+              <button type="button" class="btn btn-primary w-100 mb-2" (click)="GroupcreateChanged()">Добавить группу</button>
+            }
+            @else{
+              <button type="button" class="btn btn-primary w-100 mb-2" (click)="GroupcreateChanged()">Изменить группу</button>
+            }
+            
+            <select class="form-select h-100" size="5" aria-label="Single select example" [disabled]="groupCreating" [(ngModel)]="selectedGroup" (ngModelChange)="onSelectionChange($event)">
+              @for (item of groups; track $index) {
+              <option [ngValue]="item">{{item.name}}</option>
+              }
+            </select>
+            
+          
+        </div>
+            <div class="col-12 col-md-8">
+                @if(groupCreating){
+                  <form>
+                    <div class="mb-3">
+                      <label for="UsernameInput" class="form-label">Название группы</label>
+                      <input type="text" class="form-control" id="UsernameInput" aria-describedby="usernameHelp" [(ngModel)]="this.creatingGroupName" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <button type="submit" class="btn btn-primary" (click)="createGroup()">Создать</button>
+                  </form>
+                  @if (creatingError){
+                    <div class="alert alert-danger mt-3" role="alert">
+                      {{creatingError}}
+                    </div>
+                  }
+                }
+                @else{
+                    <form>
+                      <div class="mb-3">
+                        <label for="PassInput" class="form-label">Название группы</label>
+                        <input type="text" class="form-control" [disabled]="this.selectedGroup==null" [(ngModel)]="this.changingGroupName" id="PassInput"  [ngModelOptions]="{standalone: true}">
+                      </div>
+                      <button type="submit" [disabled]="this.selectedGroup==null" class="btn btn-primary" (click)="changeGroup()">Изменить</button>
+                      <button type="submit" [disabled]="this.selectedGroup==null" class="btn btn-danger mx-3" (click)="deleteGroup()">Удалит</button>
+                    </form>
+                    @if (changingError) {
+                      <div class="alert alert-danger mt-3" role="alert">
+                        {{changingError}}
+                      </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

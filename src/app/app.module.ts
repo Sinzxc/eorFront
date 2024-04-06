@@ -19,6 +19,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { SubjectPageComponent } from './components/admin/subject-page/subject-page.component';
+import { GroupPageComponent } from './components/admin/group-page/group-page.component';
+import { LessonsPageComponent } from './components/admin/lessons-page/lessons-page.component';
 
 
 
@@ -32,7 +34,9 @@ import { SubjectPageComponent } from './components/admin/subject-page/subject-pa
     ProfilePageComponent,
     LoginPageComponent,
     AdminPageComponent,
-    SubjectPageComponent
+    SubjectPageComponent,
+    GroupPageComponent,
+    LessonsPageComponent
   ],
   imports: [
     BrowserModule,

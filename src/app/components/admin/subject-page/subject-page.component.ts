@@ -15,7 +15,7 @@ export class SubjectPageComponent implements OnInit {
   creatingError:string = "";
   changingError:string = "";
   
-  
+  changingSubjectName?:string="";
   creatingSubjectName?:string;
 
   constructor(
@@ -31,18 +31,46 @@ export class SubjectPageComponent implements OnInit {
   }
 
   createSubject(){
-    this.adminService.createSubject(this.creatingSubjectName!).subscribe((newSubject)=>{
-    },(err)=>{
-      this.creatingError = err.error.message;
-    })
+    this.adminService.createSubject(this.creatingSubjectName!).subscribe(
+        res => {
+          this.creatingSubjectName = "";
+        },
+        err => {
+          this.creatingError = err.error.message;
+        }
+      )
     this.creatingSubjectName = "";
     this.creatingError = "";
-    this.subjectcreateChanged();
+  }
+
+  changeSubject(){
+    this.adminService.updateSubject(this.changingSubjectName!,this.selectedSubject!.name).subscribe(
+      res => {
+        this.changingError = "";
+      },
+      err => {
+        this.changingError = err.error.message;
+      }
+    )
+  this.changingSubjectName = "";
+  this.changingError = "";
+  }
+    deleteSubject(){
+    this.adminService.deleteSubject(this.selectedSubject!.name).subscribe(
+      res => {
+        this.changingError = "";
+      },
+      err => {
+        this.changingError = err.error.message;
+      }
+    )
+  this.changingSubjectName = "";
+  this.changingError = "";
   }
 
 
   onSelectionChange(event:Event){
-
+    this.changingSubjectName=this.selectedSubject?.name;
   }
 
   async getSubjects() {

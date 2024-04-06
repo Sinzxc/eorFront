@@ -3,4 +3,5 @@ export interface TimeTableItem {
     pareName: string;
     teacherName: string;
     classRoom: string;
+    groupName: string;
 }

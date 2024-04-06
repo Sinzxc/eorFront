@@ -43,4 +43,23 @@ export class AdminService {
   createSubject(name:string){
     return this.http.post<Response>(BASE_URL+"/user/addSubject",{name}, httpOptions)
   }
+
+  updateSubject(name:string,mainName:string){
+    return this.http.post<Response>(BASE_URL+"/user/updateSubject",{name,mainName}, httpOptions)
+  }
+
+  deleteSubject(name:string){
+    return this.http.post<Response>(BASE_URL+"/user/deleteSubject",{name}, httpOptions)
+  }
+  createGroup(name:string){
+    return this.http.post<Response>(BASE_URL+"/user/addGroup",{name}, httpOptions)
+  }
+
+  updateGroup(name:string,mainName:string){
+    return this.http.post<Response>(BASE_URL+"/user/updateGroup",{name,mainName}, httpOptions)
+  }
+
+  deleteGroup(name:string){
+    return this.http.post<Response>(BASE_URL+"/user/deleteGroup",{name}, httpOptions)
+  }
 }
