@@ -1,121 +1,120 @@
 <div class="card p-3">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                @if (!lessonCreating) {
-                    <button type="button" class="btn btn-primary w-100 mb-2" (click)="lessoncreateChanged()">Добавить занятие</button>
-                  }
-                  @else{
-                    <button type="button" class="btn btn-primary w-100 mb-2" (click)="lessoncreateChanged()">Изменить занятие</button>
-                  }
-                <div class="container p-0 my-2">
-                    <div class="row">
-                        <div class="col">
-                           <select class="form-select" aria-label="Single select example" [disabled]="lessonCreating" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)">
-                               @for (item of lessons; track $index) {
-                               <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
-                               }
-                            </select>
-                        </div>
-                        <div class="col">
-                           <select class="form-select" aria-label="Single select example" [disabled]="lessonCreating" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)">
-                               @for (item of lessons; track $index) {
-                               <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
-                               }
-                            </select>
-                        </div>
-                    </div>
+  <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-md-4 h-auto d-flex justify-content-between flex-column">
+          @if (!lessonCreating) {
+            <button type="button" class="btn btn-primary w-100 mb-2" (click)="lessoncreateChanged()">Добавить занятие</button>
+          }
+          @else{
+            <button type="button" class="btn btn-primary w-100 mb-2" (click)="lessoncreateChanged()">Изменить занятие</button>
+          }
+        <div class="container p-0 my-2">
+            <div class="row">
+                <div class="col">
+                   <select class="form-select" aria-label="Single select example" [disabled]="lessonCreating" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)" [ngModelOptions]="{standalone: true}">
+                       @for (item of lessons; track $index) {
+                       <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
+                       }
+                    </select>
                 </div>
-                <select class="form-select h-90 my-3" size="5" aria-label="Single select example" [disabled]="lessonCreating" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)">
-                    @for (item of lessons; track $index) {
-                    <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
-                    }
-                </select>
-            </div>
-            <div class="col">
-                @if(lessonCreating){
-                    <form>
-                      <div class="mb-3">
-                        <label for="PareInput" class="form-label">Номер пары</label>
-                        <input type="text" class="form-control" id="PareInput" aria-describedby="usernameHelp">
-                        <label for="PareInput" class="form-label">Дисциплина</label>
-                        <select class="form-select" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)">
-                            @for (item of lessons; track $index) {
-                            <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
-                            }
-                        </select>
-                        <label for="PareInput" class="form-label">Преподаватель</label>
-                        <select class="form-select" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)">
-                            @for (item of lessons; track $index) {
-                            <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
-                            }
-                        </select>
-                        <label for="PareInput" class="form-label">Кабинет</label>
-                        <input type="text" class="form-control" id="PareInput" aria-describedby="usernameHelp">
-                        <label for="PareInput" class="form-label">Группа</label>
-                        <select class="form-select" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)">
-                            @for (item of lessons; track $index) {
-                            <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
-                            }
-                        </select>
-                        <label for="PareInput" class="form-label">Дата</label>
-                        <select class="form-select" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)">
-                            @for (item of lessons; track $index) {
-                            <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
-                            }
-                        </select>
-                        <!-- <input type="text" class="form-control" id="UsernameInput" aria-describedby="usernameHelp" [(ngModel)]="this.creatingGroupName" [ngModelOptions]="{standalone: true}"> -->
-                      </div>
-                      <button type="submit" class="btn btn-primary" (click)="createLesson()">Создать</button>
-                    </form>
-                    @if (creatingError){
-                      <div class="alert alert-danger mt-3" role="alert">
-                        {{creatingError}}
-                      </div>
-                    }
-                  }
-                  @else{
-                    <form>
-                        <div class="mb-3">
-                          <label for="PareInput" class="form-label">Номер пары</label>
-                          <input type="text" class="form-control" id="PareInput" aria-describedby="usernameHelp">
-                          <label for="PareInput" class="form-label">Дисциплина</label>
-                          <select class="form-select" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)">
-                              @for (item of lessons; track $index) {
-                              <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
-                              }
-                          </select>
-                          <label for="PareInput" class="form-label">Преподаватель</label>
-                          <select class="form-select" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)">
-                              @for (item of lessons; track $index) {
-                              <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
-                              }
-                          </select>
-                          <label for="PareInput" class="form-label">Кабинет</label>
-                          <input type="text" class="form-control" id="PareInput" aria-describedby="usernameHelp">
-                          <label for="PareInput" class="form-label">Группа</label>
-                          <select class="form-select" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)">
-                              @for (item of lessons; track $index) {
-                              <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
-                              }
-                          </select>
-                          <label for="PareInput" class="form-label">Дата</label>
-                          <select class="form-select" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)">
-                              @for (item of lessons; track $index) {
-                              <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
-                              }
-                          </select>
-                          <!-- <input type="text" class="form-control" id="UsernameInput" aria-describedby="usernameHelp" [(ngModel)]="this.creatingGroupName" [ngModelOptions]="{standalone: true}"> -->
-                        </div>
-                        <button type="submit" class="btn btn-primary" (click)="createLesson()">Создать</button>
-                      </form>
-                      @if (changingError) {
-                        <div class="alert alert-danger mt-3" role="alert">
-                          {{changingError}}
-                        </div>
-                      }
-                  }
+                <div class="col">
+                   <select class="form-select" aria-label="Single select example" [disabled]="lessonCreating" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)" [ngModelOptions]="{standalone: true}">
+                       @for (item of lessons; track $index) {
+                       <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
+                       }
+                    </select>
+                </div>
             </div>
         </div>
-    </div>
+        <select class="form-select h-100" size="5" [disabled]="lessonCreating" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)" [ngModelOptions]="{standalone: true}">
+          @for (item of lessons; track $index) {
+          <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
+          }
+      </select>
+        
+      </div>
+          <div class="col-12 col-md-8">
+            @if(lessonCreating){
+              <form>
+                <div class="mb-3">
+                  <label for="PareInput" class="form-label">Номер пары</label>
+                  <input type="text" class="form-control" id="PareInput" aria-describedby="usernameHelp">
+                  <label for="PareInput" class="form-label">Дисциплина</label>
+                  <select class="form-select" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)" [ngModelOptions]="{standalone: true}">
+                      @for (item of lessons; track $index) {
+                      <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
+                      }
+                  </select>
+                  <label for="PareInput" class="form-label">Преподаватель</label>
+                  <select class="form-select" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)" [ngModelOptions]="{standalone: true}">
+                      @for (item of lessons; track $index) {
+                      <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
+                      }
+                  </select>
+                  <label for="PareInput" class="form-label">Кабинет</label>
+                  <input type="text" class="form-control" id="PareInput" aria-describedby="usernameHelp">
+                  <label for="PareInput" class="form-label">Группа</label>
+                  <select class="form-select" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)" [ngModelOptions]="{standalone: true}">
+                      @for (item of lessons; track $index) {
+                      <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
+                      }
+                  </select>
+                  <label for="PareInput" class="form-label">Дата</label>
+                  <select class="form-select" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)" [ngModelOptions]="{standalone: true}">
+                      @for (item of lessons; track $index) {
+                      <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
+                      }
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="createLesson()">Создать</button>
+              </form>
+              @if (creatingError){
+                <div class="alert alert-danger mt-3" role="alert">
+                  {{creatingError}}
+                </div>
+              }
+            }
+            @else{
+              <form>
+                  <div class="mb-3">
+                    <label for="PareInput" class="form-label">Номер пары</label>
+                    <input type="text" class="form-control" id="PareInput" aria-describedby="usernameHelp">
+                    <label for="PareInput" class="form-label">Дисциплина</label>
+                    <select class="form-select" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)" [ngModelOptions]="{standalone: true}">
+                        @for (item of lessons; track $index) {
+                        <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
+                        }
+                    </select>
+                    <label for="PareInput" class="form-label">Преподаватель</label>
+                    <select class="form-select" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)" [ngModelOptions]="{standalone: true}">
+                        @for (item of lessons; track $index) {
+                        <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
+                        }
+                    </select>
+                    <label for="PareInput" class="form-label">Кабинет</label>
+                    <input type="text" class="form-control" id="PareInput" aria-describedby="usernameHelp">
+                    <label for="PareInput" class="form-label">Группа</label>
+                    <select class="form-select" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)" [ngModelOptions]="{standalone: true}">
+                        @for (item of lessons; track $index) {
+                        <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
+                        }
+                    </select>
+                    <label for="PareInput" class="form-label">Дата</label>
+                    <select class="form-select" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)" [ngModelOptions]="{standalone: true}">
+                        @for (item of lessons; track $index) {
+                        <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
+                        }
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary" (click)="createLesson()" >Создать</button>
+                </form >
+                @if (changingError) {
+                  <div class="alert alert-danger mt-3" role="alert">
+                    {{changingError}}
+                  </div>
+                }
+            }
+          </div>
+      </div>
+  </div>
 </div>
