@@ -44,6 +44,7 @@ export class AdminPageComponent implements OnInit {
 
   selectedUser: User | null = null;
   changeSelectedGroup: Group| null = null;
+  createSelectedGroup: Group| null = null;
 
   async ngOnInit() {
     if (!this.tokenStorage.getToken()) {
@@ -132,7 +133,8 @@ export class AdminPageComponent implements OnInit {
           this.creatingUsername!,
           this.creatingPassword!,
           this.creatingName!,
-          this.creatingSname!
+          this.creatingSname!,
+          this.createSelectedGroup?.name!
         )
         .toPromise();
     } catch (error) {

@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="mb-3">
                                   <label for="SnameInput" class="form-label">Группа</label>
-                                  <select class="form-select h-100"  [(ngModel)]="changeSelectedGroup" (ngModelChange)="onGroupSelectionChange($event)"  [ngModelOptions]="{standalone: true}">
+                                  <select class="form-select h-100"  [(ngModel)]="createSelectedGroup" (ngModelChange)="onGroupSelectionChange($event)"  [ngModelOptions]="{standalone: true}">
                                     @for (item of groups; track item) {
                                       <option [ngValue]="item">{{ item.name }}</option>
                                     }
