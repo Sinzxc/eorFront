@@ -7,7 +7,7 @@ import { Group} from '../../model/Group';
 import { Person } from '../../model/Person';
 import { TimeTableItem } from '../../model/TimeTableItem';
 
-const BASE_URL = 'http://192.168.0.100:3000/api';
+const BASE_URL = 'http://192.168.0.104:3000/api';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -75,5 +75,12 @@ export class AdminService {
 
   getLesson(group:string,date:string):Observable<TimeTableItem[]> {
     return this.http.post<TimeTableItem[]>(BASE_URL+"/user/getLesson",{group,date}, httpOptions)
+  }
+
+  deleteLesson(group:string,date:string,pareNumber:number):Observable<Request> {
+    return this.http.post<Request>(BASE_URL+"/user/deleteLesson",{group,date,pareNumber}, httpOptions)
+  }
+  updateLesson(lesson:TimeTableItem,newLesson:TimeTableItem):Observable<Request> {
+    return this.http.post<Request>(BASE_URL+"/user/updateLesson",{lesson,newLesson}, httpOptions)
   }
 }

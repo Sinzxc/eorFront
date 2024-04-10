@@ -78,36 +78,36 @@
               <form>
                   <div class="mb-3">
                     <label for="PareInput" class="form-label">Номер пары</label>
-                    <input type="number" max="6" min="1" maxlength="1" class="form-control" [disabled]="selectedLesson==undefined" id="PareInput" aria-describedby="usernameHelp">
+                    <input type="number" max="6" min="1" maxlength="1" class="form-control" [disabled]="selectedLesson==undefined" [(ngModel)]="pareChange" [ngModelOptions]="{standalone: true}">
                     <label for="PareInput" class="form-label">Дисциплина</label>
-                    <select class="form-select" [disabled]="selectedLesson==undefined" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)" [ngModelOptions]="{standalone: true}">
+                    <select class="form-select" [disabled]="selectedLesson==undefined" [(ngModel)]="selectedSubjectChange"ч [ngModelOptions]="{standalone: true}">
                         @for (item of subjects; track $index) {
                         <option [ngValue]="item">{{item.name}}</option>
                         }
                     </select>
                     <label for="PareInput" class="form-label">Преподаватель</label>
-                    <select class="form-select" [disabled]="selectedLesson==undefined" [(ngModel)]="selectedTeacher" (ngModelChange)="onSelectionChange($event)" [ngModelOptions]="{standalone: true}">
+                    <select class="form-select" [disabled]="selectedLesson==undefined" [(ngModel)]="selectedTeacherChange"[ngModelOptions]="{standalone: true}">
                         @for (item of teachers; track $index) {
                         <option [ngValue]="item">{{item.name+" "+item.sname}}</option>
                         }
                     </select>
                     <label for="PareInput" class="form-label">Кабинет</label>
-                    <input type="text" [disabled]="selectedLesson==undefined" class="form-control" id="PareInput" aria-describedby="usernameHelp">
+                    <input type="text" [disabled]="selectedLesson==undefined" class="form-control" [(ngModel)]="classRoomChange" id="PareInput" aria-describedby="usernameHelp" [ngModelOptions]="{standalone: true}">
                     <label for="PareInput" class="form-label">Группа</label>
-                    <select class="form-select" [disabled]="selectedLesson==undefined" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)" [ngModelOptions]="{standalone: true}">
-                        @for (item of lessons; track $index) {
-                        <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
-                        }
-                    </select>
+                    <select class="form-select" [disabled]="selectedLesson==undefined" [(ngModel)]="selectedGroupChange"  [ngModelOptions]="{standalone: true}">
+                      @for (item of groups; track $index) {
+                        <option [ngValue]="item">{{item.name}}</option>
+                      }
+                  </select>
                     <label for="PareInput" class="form-label">Дата</label>
-                    <select class="form-select" [disabled]="selectedLesson==undefined" [(ngModel)]="selectedLesson" (ngModelChange)="onSelectionChange($event)" [ngModelOptions]="{standalone: true}">
-                        @for (item of lessons; track $index) {
-                        <option [ngValue]="item">{{item.pareNumber+' '+item.pareName+' '+item.groupName}}</option>
+                    <select class="form-select" [disabled]="selectedLesson==undefined" [(ngModel)]="selectedDateChange"  [ngModelOptions]="{standalone: true}">
+                        @for (item of dates; track $index) {
+                          <option [ngValue]="item">{{item.month+" "+item.date+" "+item.dayOfWeek }}</option>
                         }
                     </select>
                   </div>
-                  <button type="submit" class="btn btn-primary" [disabled]="selectedLesson==undefined" (click)="createLesson()" >Изменить</button>
-                  <button type="submit" class="btn btn-danger mx-3" [disabled]="selectedLesson==undefined" (click)="createLesson()" >Удалить</button>
+                  <button type="submit" class="btn btn-primary" [disabled]="selectedLesson==undefined" (click)="changeLesson()" >Изменить</button>
+                  <button type="submit" class="btn btn-danger mx-3" [disabled]="selectedLesson==undefined" (click)="deleteLesson()" >Удалить</button>
                 </form >
                 @if (changingError) {
                   <div class="alert alert-danger mt-3" role="alert">

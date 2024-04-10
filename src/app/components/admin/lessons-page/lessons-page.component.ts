@@ -38,6 +38,13 @@ export class LessonsPageComponent {
   classRoomCreate?:string;
   selectedGroupCreate?:Group;
   selectedDateCreate?:{ date: number,month:string ,dayOfWeek:string,fulldate:string};
+
+  pareChange?:number;
+  selectedSubjectChange?:Subject;
+  selectedTeacherChange?:Person;
+  classRoomChange?:string;
+  selectedGroupChange?:Group;
+  selectedDateChange?:{ date: number,month:string ,dayOfWeek:string,fulldate:string};
   
   constructor(
     private adminService: AdminService
@@ -94,13 +101,13 @@ export class LessonsPageComponent {
   }
   
   async getGroup() {
-    this.adminService.getAllGroups().subscribe((newGroups) => {
+    await this.adminService.getAllGroups().subscribe((newGroups) => {
       this.groupsForSelect = newGroups;
       this.groupsForSelect!.unshift({name:"Все группы"} as Group);
       this.selectedGroup=this.groupsForSelect[0]
       this.groups = newGroups;
     });
-    this.adminService.getAllGroups().subscribe((newGroups) => {
+    await this.adminService.getAllGroups().subscribe((newGroups) => {
       this.groups = newGroups;
     });
   }
@@ -123,7 +130,24 @@ export class LessonsPageComponent {
   }
 
   onSelectionChange(event:Event){
-
+    this.pareChange=this.selectedLesson?.pareNumber
+    this.subjects?.forEach(element=> {
+      if(element.name == this.selectedLesson?.pareName){
+      this.selectedSubjectChange = element;
+      }
+      })
+    this.teachers?.forEach(element=> {
+      if(element.name+" "+element.sname == this.selectedLesson?.teacherName){
+      this.selectedTeacherChange = element;
+      }
+      })
+    this.groups?.forEach(element=> {
+      if(element.name == this.selectedLesson?.groupName){
+      this.selectedGroupChange = element;
+      }
+      })
+    this.classRoomChange=this.selectedLesson?.classRoom
+    this.selectedDateChange=this.selectedDate
   }
   onMainSelectionChange(event: Event) {
     const selectedDate = this.selectedDate?.fulldate; // Получаем строку даты
@@ -144,12 +168,37 @@ export class LessonsPageComponent {
         return;
       }
     this.adminService.addLesson(this.selectedSubjectCreate?.name!,this.selectedTeacherCreate?.name!,this.selectedTeacherCreate?.sname!,this.selectedDate?.fulldate!,this.pareCreate!,this.classRoomCreate!,this.selectedGroupCreate?.name!).subscribe();
+    this.selectedSubjectCreate=undefined;
+    this.selectedTeacherCreate=undefined;
+    this.selectedDateCreate=undefined;
+    this.selectedGroupCreate=undefined;
+    this.pareCreate=undefined;
+    this.classRoomCreate=undefined;
   }
 
   changeLesson(){
-
+    var newLesson = { 
+      pareNumber: this.pareChange!, 
+      pareName: this.selectedSubjectChange?.name!, 
+      teacherName: this.selectedTeacherChange?.name! + " " + this.selectedTeacherChange?.sname!, 
+      classRoom: this.classRoomChange!.toString()!, 
+      groupName: this.selectedGroupChange?.name!, 
+      fulldate: this.selectedDateChange?.fulldate!
+    }; 
+    var currentDate = new Date(this.selectedLesson?.fulldate!);
+    const formattedDate = currentDate.toISOString().split('T')[0];
+    var currentLesson = { 
+        pareNumber: this.selectedLesson?.pareNumber!, 
+        pareName: this.selectedLesson?.pareName!, 
+        teacherName: this.selectedLesson?.teacherName!, 
+        classRoom: this.selectedLesson?.classRoom!.toString()!,
+        groupName: this.selectedLesson?.groupName!, 
+        fulldate: formattedDate
+    }; 
+    this.adminService.updateLesson(currentLesson, newLesson).subscribe();  
   }
   deleteLesson(){
-    
+    this.creatingError='';
+    this.adminService.deleteLesson(this.selectedGroupChange?.name!,this.selectedDateChange?.fulldate!,this.pareChange!).subscribe();
   }
 }
