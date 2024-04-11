@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from '../../services/tokenService/token-storage.service';
+import { CSVService } from '../../services/uploadCSV/csv.service';
 import { User } from '../../model/User';
 import { Subject } from '../../model/Subject';
 import { Router } from '@angular/router';
@@ -18,7 +19,8 @@ export class AdminPageComponent implements OnInit {
   constructor(
     private router: Router,
     private tokenStorage: TokenStorageService,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private csvService: CSVService,
   ) {}
 
   isLoggedIn: boolean = false;
@@ -202,6 +204,23 @@ export class AdminPageComponent implements OnInit {
           break;
       }
     }
+  }
+
+  //file try
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    this.uploadFile(file);
+  }
+
+  uploadFile(file: File) {
+    this.csvService.uploadFile(file).subscribe(
+      response => {
+        console.log('File uploaded successfully:', response);
+      },
+      error => {
+        console.error('Error uploading file:', error);
+      }
+    );
   }
   
 }
