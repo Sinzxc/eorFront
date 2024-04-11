@@ -49,6 +49,14 @@
                                     }
                                   </select>                                   
                                 </div>
+                                <div class="mb-3">
+                                  <label for="SnameInput" class="form-label">Роль</label>
+                                  <select class="form-select h-100"  [(ngModel)]="createSelectedRole" (ngModelChange)="onGroupSelectionChange($event)"  [ngModelOptions]="{standalone: true}">
+                                    @for (item of roles; track item) {
+                                      <option [ngValue]="item">{{ item.name }}</option>
+                                    }
+                                  </select>                                   
+                                </div>
                                 <button type="submit" class="btn btn-primary" (click)="createUser()">Создать</button>
                               </form>
                               @if (creatingError){
@@ -82,6 +90,14 @@
                                       <option [ngValue]="item">{{ item.name }}</option>
                                     }
                                   </select>                                  
+                                </div>
+                                <div class="mb-3">
+                                  <label for="SnameInput" class="form-label">Роль</label>
+                                  <select class="form-select h-100"  [(ngModel)]="changeSelectedRole" [disabled]="this.selectedUser==undefined" (ngModelChange)="onGroupSelectionChange($event)"  [ngModelOptions]="{standalone: true}">
+                                    @for (item of roles; track item) {
+                                      <option [ngValue]="item">{{ item.name }}</option>
+                                    }
+                                  </select>                                   
                                 </div>
                                   <button type="submit" class="btn btn-primary" [disabled]="this.selectedUser==undefined" (click)="updateUser()">Изменить</button>
                                   <button type="submit" class="btn btn-danger mx-3" [disabled]="this.selectedUser==undefined" (click)="deleteUser()">Удалить</button>

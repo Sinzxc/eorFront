@@ -3,5 +3,4 @@ export interface Person {
     name: string;
     sname: string;
     patronym: string;
-    isTeacher: boolean;
 }

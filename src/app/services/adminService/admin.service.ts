@@ -6,6 +6,7 @@ import { Subject} from '../../model/Subject';
 import { Group} from '../../model/Group';
 import { Person } from '../../model/Person';
 import { TimeTableItem } from '../../model/TimeTableItem';
+import { Role } from '../../model/Role';
 
 const BASE_URL = 'http://192.168.0.104:3000/api';
 
@@ -30,12 +31,12 @@ export class AdminService {
     return this.http.post<Group[]>(BASE_URL+"/user/getAllGroups", httpOptions)
   }
 
-  registerUser(username: string, password: string,name:string,sname:string,group:string):Observable<Response>{
-    return this.http.post<Response>(BASE_URL+"/auth/signup",{username,password,name,sname,group}, httpOptions)
+  registerUser(username: string, password: string,name:string,sname:string,group:string,role:string):Observable<Response>{
+    return this.http.post<Response>(BASE_URL+"/auth/signup",{username,password,name,sname,group,role}, httpOptions)
   }
 
-  updateUser(mainUsername:string, username: string, password: string,name:string,sname:string,groupId:string):Observable<Response>{
-    return this.http.post<Response>(BASE_URL+"/user/updateUser",{mainUsername,username,password,name,sname,groupId}, httpOptions)
+  updateUser(mainUsername:string, username: string, password: string,name:string,sname:string,groupId:string,role:string):Observable<Response>{
+    return this.http.post<Response>(BASE_URL+"/user/updateUser",{mainUsername,username,password,name,sname,groupId,role}, httpOptions)
   }
 
   deleteUser(username:string):Observable<Response>{
@@ -75,6 +76,9 @@ export class AdminService {
 
   getLesson(group:string,date:string):Observable<TimeTableItem[]> {
     return this.http.post<TimeTableItem[]>(BASE_URL+"/user/getLesson",{group,date}, httpOptions)
+  }
+  getRoles():Observable<Role[]> {
+    return this.http.post<Role[]>(BASE_URL+"/user/getRoles", httpOptions)
   }
 
   deleteLesson(group:string,date:string,pareNumber:number):Observable<Request> {

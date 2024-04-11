@@ -7,6 +7,7 @@ import { AdminService } from '../../services/adminService/admin.service';
 import { delay } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Group } from '../../model/Group';
+import { Role } from '../../model/Role';
 
 @Component({
   selector: 'app-admin-page',
@@ -31,6 +32,7 @@ export class AdminPageComponent implements OnInit {
   users?: User[];
   subjects?: Subject[];
   groups?: Group[];
+  roles?: Role[];
 
   creatingPassword?: string;
   creatingUsername?: string;
@@ -45,7 +47,8 @@ export class AdminPageComponent implements OnInit {
   selectedUser: User | null = null;
   changeSelectedGroup: Group| null = null;
   createSelectedGroup: Group| null = null;
-
+  createSelectedRole: Role|null=null;
+  changeSelectedRole: Role|null=null;
   async ngOnInit() {
     if (!this.tokenStorage.getToken()) {
       this.router.navigate(['/login']).then(() => window.location.reload());
@@ -55,11 +58,16 @@ export class AdminPageComponent implements OnInit {
     this.getUsers();
     this.getSubjects();
     this.getGroups();
-    
+    this.getRoles();
   }
 
   createChanged(): void {
     this.userCreating = !this.userCreating;
+    this.roles?.forEach(element=> {
+      if(element.name == "user"){
+      this.createSelectedRole = element;
+      }
+    })
   }
 
   subjectcreateChanged(): void {
@@ -86,6 +94,11 @@ export class AdminPageComponent implements OnInit {
       this.groups = newGroup;
     });
   }
+  async getRoles() {
+    this.adminService.getRoles().subscribe((newRole) => {
+      this.roles= newRole;
+    });
+  }
 
   onSelectionChange(event: any) {
     this.changingUsername =this.selectedUser?.username;
@@ -94,6 +107,11 @@ export class AdminPageComponent implements OnInit {
     this.groups?.forEach(element=> {
       if(element._id == this.selectedUser?.group._id){
       this.changeSelectedGroup = element;
+      }
+      })
+    this.roles?.forEach(element=> {
+      if(element.name == this.selectedUser?.role){
+      this.changeSelectedRole = element;
       }
       })
   }
@@ -134,7 +152,8 @@ export class AdminPageComponent implements OnInit {
           this.creatingPassword!,
           this.creatingName!,
           this.creatingSname!,
-          this.createSelectedGroup?.name!
+          this.createSelectedGroup?.name!,
+          this.createSelectedRole?._id!
         )
         .toPromise();
     } catch (error) {
@@ -163,7 +182,7 @@ export class AdminPageComponent implements OnInit {
       return;
     this.changingError = '';
     try{
-      this.adminService.updateUser(this.selectedUser!.username!,this.changingUsername!,this.changingPassword!,this.changingName!,this.changingSname!,this.changeSelectedGroup?._id!).subscribe((newGroup) => {
+      this.adminService.updateUser(this.selectedUser!.username!,this.changingUsername!,this.changingPassword!,this.changingName!,this.changingSname!,this.changeSelectedGroup?._id!,this.changeSelectedRole?._id!).subscribe((newGroup) => {
       });      
       this.changingUsername = undefined;
       this.changingPassword = undefined;
