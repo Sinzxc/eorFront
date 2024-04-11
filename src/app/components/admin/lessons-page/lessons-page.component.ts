@@ -167,7 +167,7 @@ export class LessonsPageComponent {
         this.creatingError = "Необходимо заполнить все поля";
         return;
       }
-    this.adminService.addLesson(this.selectedSubjectCreate?.name!,this.selectedTeacherCreate?.name!,this.selectedTeacherCreate?.sname!,this.selectedDate?.fulldate!,this.pareCreate!,this.classRoomCreate!,this.selectedGroupCreate?.name!).subscribe();
+    this.adminService.addLesson(this.selectedSubjectCreate?.name!,this.selectedTeacherCreate?.name!,this.selectedTeacherCreate?.sname!,this.selectedDateCreate?.fulldate!,this.pareCreate!,this.classRoomCreate!,this.selectedGroupCreate?.name!).subscribe();
     this.selectedSubjectCreate=undefined;
     this.selectedTeacherCreate=undefined;
     this.selectedDateCreate=undefined;
