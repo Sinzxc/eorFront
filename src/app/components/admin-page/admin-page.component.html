@@ -58,7 +58,7 @@
                                   </select>                                   
                                 </div>
                                 <button type="submit" class="btn btn-primary" (click)="createUser()">Создать</button>
-                                <input type="file" (change)="onFileSelected($event)">
+                                <input type="file" accept=".csv" (change)="onFileSelected($event)">
                               </form>
                               @if (creatingError){
                                 <div class="alert alert-danger mt-3" role="alert">
