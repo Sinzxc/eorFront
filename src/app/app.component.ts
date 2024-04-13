@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   title = 'EER';
   user?:Person;
   currentRoute?: string;
-
+  profileImageHref:string='';
   _isAdmin:boolean = false;
   get isAdmin(): boolean {
     return this._isAdmin
@@ -21,9 +21,16 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     
   }
+  async getAvatar(){
+    const username = await this.studentService.getUsername(this.tokenStorage.getUser()).subscribe(username =>
+      this.profileImageHref = 'https://api.dicebear.com/8.x/identicon/svg?seed='+username
+    )
+    console.log(this.profileImageHref)
+  }
   constructor(private router: Router,
     private studentService: StudentService,
     private tokenStorage:TokenStorageService) {
+    this.getAvatar()
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.url;
@@ -31,7 +38,7 @@ export class AppComponent implements OnInit {
     });
     this.getUser()
     this._isAdmin=tokenStorage.getUser().role=="admin";
-    console.log(this.isAdmin);
+   
   }
 
   async getUser(){

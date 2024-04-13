@@ -3,14 +3,14 @@ import { PublicService } from '../../services/publicService/public.service';
 import { TokenStorageService } from '../../services/tokenService/token-storage.service';
 import { Group } from '../../model/Group';
 import { TimeTableItem } from '../../model/TimeTableItem';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses-page',
   templateUrl: './timetable-page.component.html',
   styleUrl: './timetable-page.component.scss',
 })
-export class TimetablePageComponent {
+export class TimetablePageComponent implements OnInit {
   
   dates: { date: number,month:string ,dayOfWeek:string,fulldate:string}[] = [];
   groups:Group[]=[]
@@ -20,9 +20,14 @@ export class TimetablePageComponent {
   selectedGroup?:Group;
 
   constructor(private publicService: PublicService,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
+    private router: Router
   ) { }
   ngOnInit(): void {
+    if (!this.tokenStorageService.getToken()) {
+      this.router.navigate(['/login']).then(() => window.location.reload());
+      return;
+    }
     this.generateDates();
     this.getGroup();
     this.selectedDate = this.dates[0];
@@ -41,7 +46,6 @@ export class TimetablePageComponent {
   async getTimeTable() {
     await this.publicService.getTimeTable(this.selectedDate?.fulldate!,this.selectedGroup?.name!).subscribe((newTimes) => {
       this.times = newTimes;
-      console.log(this.times)
     });
     
   }

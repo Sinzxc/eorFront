@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Person } from '../../model/Person';
+import { User } from '../../model/User';
 
-const BASE_URL = 'http://192.168.0.104:3000/api/user/getUser';
+const BASE_URL = 'http://192.168.0.103:3000/api/user';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,6 +23,11 @@ export class StudentService {
   // }
 
   getStudent(userId: string): Observable<Person> {
-    return this.http.post<Person>(BASE_URL,{userId}, httpOptions)
+    return this.http.post<Person>(BASE_URL+'/getUser',{userId}, httpOptions)
   }
+
+  getUsername(user:User): Observable<string> {
+    return this.http.post<string>(BASE_URL + "/getUsername", { user }, httpOptions);
+  }
+
 }

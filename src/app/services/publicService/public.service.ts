@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Group} from '../../model/Group';
 import { TimeTableItem } from '../../model/TimeTableItem';
 
-const BASE_URL = 'http://192.168.0.104:3000/api';
+const BASE_URL = 'http://192.168.0.103:3000/api';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };

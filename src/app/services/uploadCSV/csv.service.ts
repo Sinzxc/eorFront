@@ -11,6 +11,6 @@ export class CSVService {
     const formData = new FormData();
     formData.append('file', file);
 
-    return this.http.post<any>('http://192.168.0.104:3000/api/user/uploadFile', formData);
+    return this.http.post<any>('http://192.168.0.103:3000/api/user/uploadFile', formData);
   }
 }

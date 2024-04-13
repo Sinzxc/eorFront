@@ -22,6 +22,7 @@ export class ProfilePageComponent implements OnInit {
   user?:Person;
   roleId=this.tokenStorage.getUser().role;
   role?:string;
+  profileImageHref?:string;
   async ngOnInit(): Promise<void> {
     if (!this.tokenStorage.getToken()) {
       this.router.navigate(['/login']).then(() => window.location.reload());
@@ -29,7 +30,10 @@ export class ProfilePageComponent implements OnInit {
     }
     this.isLoggedIn = true;
     const response = await this.studentService.getStudent(this.tokenStorage.getUser().userId).toPromise(); 
-
+    const username = await this.studentService.getUsername(this.tokenStorage.getUser()).subscribe(username =>
+      this.profileImageHref = 'https://api.dicebear.com/8.x/identicon/svg?seed='+username
+    )
+    
     if (response) {
       const responseObject: Person = response;
       this.user = responseObject;
@@ -41,8 +45,7 @@ export class ProfilePageComponent implements OnInit {
       case  "admin":this.role= "Преподаватель"; break;
       default:this.role= "unknown"; break;
     }
-
-
+    this.profileImageHref=this.tokenStorage.getUser();
 }
 
 

@@ -6,16 +6,18 @@ import { CoursesPageComponent } from './components/courses-page/courses-page.com
 import {  ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
+import { ErrComponent } from './components/err/err.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect empty path to '/home'
+  { path: '', redirectTo: 'home', pathMatch: 'full'}, // Redirect empty path to '/home'
   { path: 'home', component: MainPageComponent },
   { path: 'courses', component: CoursesPageComponent }, 
   { path: 'timetable', component: TimetablePageComponent },
   { path: 'user-profile', component: ProfilePageComponent }, 
   { path: 'login', component: LoginPageComponent }, 
   { path: 'server-error', component: CoursesPageComponent },
-  { path: 'admin', component: AdminPageComponent}
+  { path: 'admin', component: AdminPageComponent},
+  { path: '**', component: ErrComponent },
 ];
 
 @NgModule({

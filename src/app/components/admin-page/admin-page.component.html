@@ -57,8 +57,11 @@
                                     }
                                   </select>                                   
                                 </div>
+                                <!-- <div class="mb-3">
+                                  <label for="formFile" class="form-label">Импорт данных из CVS</label>
+                                  <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
+                                </div> -->
                                 <button type="submit" class="btn btn-primary" (click)="createUser()">Создать</button>
-                                <input type="file" accept=".csv" (change)="onFileSelected($event)">
                               </form>
                               @if (creatingError){
                                 <div class="alert alert-danger mt-3" role="alert">

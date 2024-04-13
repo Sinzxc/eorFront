@@ -21,6 +21,7 @@ import { AdminPageComponent } from './components/admin-page/admin-page.component
 import { SubjectPageComponent } from './components/admin/subject-page/subject-page.component';
 import { GroupPageComponent } from './components/admin/group-page/group-page.component';
 import { LessonsPageComponent } from './components/admin/lessons-page/lessons-page.component';
+import { ErrComponent } from './components/err/err.component';
 
 
 
@@ -36,7 +37,8 @@ import { LessonsPageComponent } from './components/admin/lessons-page/lessons-pa
     AdminPageComponent,
     SubjectPageComponent,
     GroupPageComponent,
-    LessonsPageComponent
+    LessonsPageComponent,
+    ErrComponent
   ],
   imports: [
     BrowserModule,
