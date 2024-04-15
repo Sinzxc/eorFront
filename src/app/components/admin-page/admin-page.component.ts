@@ -83,9 +83,9 @@ export class AdminPageComponent implements OnInit {
         return a.person.name.localeCompare(b.person.name);
     });
   }, (err) => {
-    if(err.code==418)
+    if(err.status==418)
       {
-        this.router.navigate(['/login']).then(() => window.location.reload());
+        this.router.navigate(['/home']).then(() => window.location.reload());
         return;
       }
   });

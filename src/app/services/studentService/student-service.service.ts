@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Person } from '../../model/Person';
 import { User } from '../../model/User';
 
-const BASE_URL = 'http://192.168.20.206:3000/api/user';
+const BASE_URL = 'http://192.168.0.102:3000/api/user';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
