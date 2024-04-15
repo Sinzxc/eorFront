@@ -25,7 +25,7 @@ export class ProfilePageComponent implements OnInit {
   profileImageHref?:string;
   async ngOnInit(): Promise<void> {
     if (!this.tokenStorage.getToken()) {
-      this.router.navigate(['/login']).then(() => window.location.reload());
+      this.router.navigate(['/login']);
       return;
     }
     this.isLoggedIn = true;

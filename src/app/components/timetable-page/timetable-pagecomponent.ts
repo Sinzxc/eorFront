@@ -25,7 +25,7 @@ export class TimetablePageComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     if (!this.tokenStorageService.getToken()) {
-      this.router.navigate(['/login']).then(() => window.location.reload());
+      this.router.navigate(['/login']);
       return;
     }
     this.generateDates();

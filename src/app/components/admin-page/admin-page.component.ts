@@ -53,7 +53,7 @@ export class AdminPageComponent implements OnInit {
   changeSelectedRole: Role|null=null;
   async ngOnInit() {
     if (!this.tokenStorage.getToken()) {
-      this.router.navigate(['/login']).then(() => window.location.reload());
+      this.router.navigate(['/login']);
       return;
     }
     this.isLoggedIn = true;
@@ -85,7 +85,7 @@ export class AdminPageComponent implements OnInit {
   }, (err) => {
     if(err.status==418)
       {
-        this.router.navigate(['/home']).then(() => window.location.reload());
+        this.router.navigate(['/home']);
         return;
       }
   });
