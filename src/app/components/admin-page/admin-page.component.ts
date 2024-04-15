@@ -82,7 +82,13 @@ export class AdminPageComponent implements OnInit {
       this.users = newUsers.sort((a, b) =>{
         return a.person.name.localeCompare(b.person.name);
     });
-  }, (err) => {});
+  }, (err) => {
+    if(err.code==418)
+      {
+        this.router.navigate(['/login']).then(() => window.location.reload());
+        return;
+      }
+  });
 }
 
   async getSubjects() {

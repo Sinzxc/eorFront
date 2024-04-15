@@ -42,7 +42,8 @@ export class ProfilePageComponent implements OnInit {
     }
     switch(this.roleId){
       case  "user":this.role= "Студент"; break;
-      case  "admin":this.role= "Преподаватель"; break;
+      case  "teacher":this.role= "Преподаватель"; break;
+      case  "admin":this.role= "Администратор"; break;
       default:this.role= "unknown"; break;
     }
     this.profileImageHref=this.tokenStorage.getUser();
