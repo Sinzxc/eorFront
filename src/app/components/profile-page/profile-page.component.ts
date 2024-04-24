@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from '../../services/tokenService/token-storage.service';
 import { Person } from '../../model/Person';
 import { Router } from '@angular/router';
-import { StudentService } from '../../services/studentService/student-service.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { PublicService } from '../../services/publicService/public.service';
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
@@ -14,11 +14,10 @@ export class ProfilePageComponent implements OnInit {
   constructor(
     private router: Router,
     private tokenStorage: TokenStorageService,
-    private studentService: StudentService,
+    private publicService: PublicService,
     private http: HttpClient
   ) {}
 
-  isLoggedIn: boolean = false;
   user?:Person;
   roleId=this.tokenStorage.getUser().role;
   role?:string;
@@ -28,12 +27,7 @@ export class ProfilePageComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
-    this.isLoggedIn = true;
-    const response = await this.studentService.getStudent(this.tokenStorage.getUser().userId).toPromise(); 
-    const username = await this.studentService.getUsername(this.tokenStorage.getUser()).subscribe(username =>
-      this.profileImageHref = 'https://api.dicebear.com/8.x/identicon/svg?seed='+username
-    )
-    
+    const response = await this.publicService.getStudent(this.tokenStorage.getUser().userId).toPromise(); 
     if (response) {
       const responseObject: Person = response;
       this.user = responseObject;
@@ -46,7 +40,12 @@ export class ProfilePageComponent implements OnInit {
       case  "admin":this.role= "Администратор"; break;
       default:this.role= "unknown"; break;
     }
-    this.profileImageHref=this.tokenStorage.getUser();
+    this.getAvatar()
+}
+async getAvatar(){
+  const username = await this.publicService.getUsername(this.tokenStorage.getUser().userId).subscribe(username =>
+    this.profileImageHref = 'https://api.dicebear.com/8.x/identicon/svg?seed='+username
+  )
 }
 
 

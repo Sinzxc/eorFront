@@ -10,7 +10,6 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { TestService } from './services/testService/test.service';
 import { TokenInterceptor } from './intercept/auth.intercepter';
 import {TimetablePageComponent } from './components/timetable-page/timetable-pagecomponent';
 import {CoursesPageComponent } from './components/courses-page/courses-page.component';
@@ -22,7 +21,10 @@ import { SubjectPageComponent } from './components/admin/subject-page/subject-pa
 import { GroupPageComponent } from './components/admin/group-page/group-page.component';
 import { LessonsPageComponent } from './components/admin/lessons-page/lessons-page.component';
 import { ErrComponent } from './components/err/err.component';
-
+import { AuthorizePageComponent } from './components/authorize-page/authorize-page.component';
+import { ErrorHandler } from '@angular/core';
+import { GlobalErrorHandler } from './intercept/error';
+import { RefreshTokenModalComponent } from './components/refresh-token-modal/refresh-token-modal.component'; 
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { ErrComponent } from './components/err/err.component';
     SubjectPageComponent,
     GroupPageComponent,
     LessonsPageComponent,
-    ErrComponent
+    ErrComponent,
+    AuthorizePageComponent,
+    RefreshTokenModalComponent
   ],
   imports: [
     BrowserModule,
@@ -49,11 +53,13 @@ import { ErrComponent } from './components/err/err.component';
     CommonModule,
     FormsModule
   ],
-  providers: [ {
+  providers: [
+    AppComponent, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
-  }],
+  },
+  { provide: ErrorHandler, useClass: GlobalErrorHandler }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

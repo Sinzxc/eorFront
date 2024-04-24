@@ -7,6 +7,7 @@ import {  ProfilePageComponent } from './components/profile-page/profile-page.co
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { ErrComponent } from './components/err/err.component';
+import { AuthorizePageComponent } from './components/authorize-page/authorize-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'}, // Redirect empty path to '/home'
@@ -14,7 +15,7 @@ const routes: Routes = [
   { path: 'courses', component: CoursesPageComponent }, 
   { path: 'timetable', component: TimetablePageComponent },
   { path: 'user-profile', component: ProfilePageComponent }, 
-  { path: 'login', component: LoginPageComponent }, 
+  { path: 'login', component: AuthorizePageComponent}, 
   { path: 'server-error', component: CoursesPageComponent },
   { path: 'admin', component: AdminPageComponent},
   { path: '**', component: ErrComponent },

@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row d-flex flex-md-row flex-column">
+        <div class="col left-panel text-center d-flex flex-column justify-content-center d-none d-md-flex">
+            <img src="../../../assets/auth/main.svg" class="logo" alt="">
+            <h2 class="fs-2">Добро пожаловать на</h2>
+            <h3 class="fs-3">Электронный образовательный ресурс<br>МГГТК АГУ</h3>
+        </div>
+        <div class="col d-flex flex-column justify-content-center right-panel">
+            <div class="wrap">
+                <h2 class="text-center">Авторизация</h2>
+                <form class="d-flex flex-column w-100 m-auto" (submit)="OnSubmit()">
+                    <label for="username">Имя пользователя</label>
+                    <input type="text" class="form-control" [(ngModel)]="form.username" name="username" placeholder="Например: user">
+                    <label for="password">Пароль</label>
+                    <input type="password" class="form-control" [(ngModel)]="form.password" name="password" placeholder="Введите пароль">
+                    <button type="submit" class="btn">Войти</button>
+                </form>
+                @if (error!='') {
+                <div class="alert alert-danger w-100 mx-auto" role="alert">
+                    {{error}}
+                </div>
+                }
+                <p class="text-center fs-6">Нажимая кнопку “Войти” Вы соглашаетесь с<br><a href="#">политикой обработки персональных данных</a></p>
+            </div>
+            <h4>©2024 Майкопский государственный гуманитарно-технический колледж</h4>
+        </div>
+    </div>
+</div>

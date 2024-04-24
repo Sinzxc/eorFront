@@ -12,7 +12,7 @@
           <li class="nav-item border-bottom">
             <a class="nav-link d-flex align-items-center d-block d-lg-none m-3" routerLink="/user-profile">
               <img src="{{profileImageHref}}" class="avatar" alt="Аватар пользователя">
-              <p class="mx-2 mb-0">{{user.name + " " + user.sname}}</p>
+              <p class="mx-2 mb-0">{{user.name + " " + user.surname}}</p>
             </a>
           </li>
           <li class="nav-item mx-3 my-1 ">
@@ -43,11 +43,28 @@
       <div class="profile">
         <a class="nav-link align-items-center d-none d-lg-flex profile-link" routerLink="/user-profile">
           <img src="{{profileImageHref}}" class="avatar" alt="Аватар пользователя">
-          <p class="mx-2 mb-0">{{user.name + " " + user.sname}}</p>
+          <p class="mx-2 mb-0">{{user.name + " " + user.surname}}</p>
         </a>
       </div>
     </div>
   </nav>
 }
+<!-- Modal -->
+<ng-container #container>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Ошибка</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Продлить сессию?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Закрыть</button>
+    </div>
+  </ng-template>
+</ng-container>
 <router-outlet></router-outlet>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">

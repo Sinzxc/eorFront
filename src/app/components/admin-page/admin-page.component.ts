@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from '../../services/tokenService/token-storage.service';
-import { CSVService } from '../../services/uploadCSV/csv.service';
 import { User } from '../../model/User';
 import { Subject } from '../../model/Subject';
 import { Router } from '@angular/router';
@@ -20,7 +19,6 @@ export class AdminPageComponent implements OnInit {
     private router: Router,
     private tokenStorage: TokenStorageService,
     private adminService: AdminService,
-    private csvService: CSVService,
   ) {}
 
   isLoggedIn: boolean = false;
@@ -83,7 +81,7 @@ export class AdminPageComponent implements OnInit {
         return a.person.name.localeCompare(b.person.name);
     });
   }, (err) => {
-    if(err.status==418)
+    if(err.status==403)
       {
         this.router.navigate(['/home']);
         return;
@@ -212,22 +210,5 @@ export class AdminPageComponent implements OnInit {
     }
   }
 
-  //file try
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    this.uploadFile(file);
-  }
-
-  uploadFile(file: File) {
-    this.csvService.uploadFile(file).subscribe(
-      response => {
-        console.log('File uploaded successfully:', response);
-      },
-      error => {
-        console.error('Error uploading file:', error);
-      }
-    );
-  }
-  
 }
 

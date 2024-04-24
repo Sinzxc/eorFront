@@ -8,7 +8,7 @@ import { Person } from '../../model/Person';
 import { TimeTableItem } from '../../model/TimeTableItem';
 import { Role } from '../../model/Role';
 
-const BASE_URL = 'http://192.168.0.102:3000/api';
+const BASE_URL = 'http://localhost:3000/api';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

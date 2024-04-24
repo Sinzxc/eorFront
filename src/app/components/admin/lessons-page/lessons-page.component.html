@@ -48,7 +48,7 @@
                   <label for="PareInput" class="form-label">Преподаватель</label>
                   <select class="form-select" [(ngModel)]="selectedTeacherCreate" (ngModelChange)="onSelectionChange($event)" [ngModelOptions]="{standalone: true}">
                       @for (item of teachers; track $index) {
-                      <option [ngValue]="item">{{item.name+ " "+item.sname}}</option>
+                      <option [ngValue]="item">{{item.name+ " "+item.surname}}</option>
                       }
                   </select>
                   <label for="PareInput" class="form-label">Кабинет</label>
@@ -88,7 +88,7 @@
                     <label for="PareInput" class="form-label">Преподаватель</label>
                     <select class="form-select" [disabled]="selectedLesson==undefined" [(ngModel)]="selectedTeacherChange"[ngModelOptions]="{standalone: true}">
                         @for (item of teachers; track $index) {
-                        <option [ngValue]="item">{{item.name+" "+item.sname}}</option>
+                        <option [ngValue]="item">{{item.name+" "+item.surname}}</option>
                         }
                     </select>
                     <label for="PareInput" class="form-label">Кабинет</label>

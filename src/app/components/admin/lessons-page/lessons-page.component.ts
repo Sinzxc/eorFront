@@ -137,7 +137,7 @@ export class LessonsPageComponent {
       }
       })
     this.teachers?.forEach(element=> {
-      if(element.name+" "+element.sname == this.selectedLesson?.teacherName){
+      if(element.name+" "+element.surname == this.selectedLesson?.teacherName){
       this.selectedTeacherChange = element;
       }
       })
@@ -162,12 +162,12 @@ export class LessonsPageComponent {
 
   async createLesson(){
     this.creatingError='';
-    if((!this.selectedSubjectCreate?.name! || !this.selectedTeacherCreate?.name! || !this.selectedTeacherCreate?.sname!  || !this.selectedDate?.fulldate!||!this.pareCreate!||!this.classRoomCreate||!this.selectedGroupCreate?.name!))
+    if((!this.selectedSubjectCreate?.name! || !this.selectedTeacherCreate?.name! || !this.selectedTeacherCreate?.surname!  || !this.selectedDate?.fulldate!||!this.pareCreate!||!this.classRoomCreate||!this.selectedGroupCreate?.name!))
       {
         this.creatingError = "Необходимо заполнить все поля";
         return;
       }
-    this.adminService.addLesson(this.selectedSubjectCreate?.name!,this.selectedTeacherCreate?.name!,this.selectedTeacherCreate?.sname!,this.selectedDateCreate?.fulldate!,this.pareCreate!,this.classRoomCreate!,this.selectedGroupCreate?.name!).subscribe();
+    this.adminService.addLesson(this.selectedSubjectCreate?.name!,this.selectedTeacherCreate?.name!,this.selectedTeacherCreate?.surname!,this.selectedDateCreate?.fulldate!,this.pareCreate!,this.classRoomCreate!,this.selectedGroupCreate?.name!).subscribe();
     this.selectedSubjectCreate=undefined;
     this.selectedTeacherCreate=undefined;
     this.selectedDateCreate=undefined;
@@ -180,7 +180,7 @@ export class LessonsPageComponent {
     var newLesson = { 
       pareNumber: this.pareChange!, 
       pareName: this.selectedSubjectChange?.name!, 
-      teacherName: this.selectedTeacherChange?.name! + " " + this.selectedTeacherChange?.sname!, 
+      teacherName: this.selectedTeacherChange?.name! + " " + this.selectedTeacherChange?.surname!, 
       classRoom: this.classRoomChange!.toString()!, 
       groupName: this.selectedGroupChange?.name!, 
       fulldate: this.selectedDateChange?.fulldate!
