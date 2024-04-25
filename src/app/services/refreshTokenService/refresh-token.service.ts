@@ -32,7 +32,7 @@ export class RefreshTokenService {
           },
           err => {
             this.tokenService.signOut();
-            // window.location.reload();
+            window.location.reload();
             this.router.navigate(['/login']);
           }
         );
