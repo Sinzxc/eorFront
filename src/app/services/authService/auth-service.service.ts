@@ -15,6 +15,11 @@ export class AuthServiceService {
 
   constructor(private http: HttpClient) { }
 
+  refreshToken(refreshToken:string): Observable<any> {
+    return this.http.post(AUTH_API + 'refresh', {
+      refreshToken
+    }, httpOptions)
+  }
   login(username: string, password: string): Observable<any> {
     return this.http.post(AUTH_API + 'signin', {
       username, 

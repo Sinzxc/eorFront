@@ -31,6 +31,7 @@ export class AuthorizePageComponent {
     this.authService.login(username, password).subscribe({
       next: (data) => {
         this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveRefreshToken(data.refreshToken);
         this.tokenStorage.saveUser(data);
         this.router.navigate(['/home']).then(() => {
           window.location.reload();

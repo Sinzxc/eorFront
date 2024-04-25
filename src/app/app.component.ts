@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { TokenStorageService } from './services/tokenService/token-storage.service';
 import { Person } from './model/Person';
 import { PublicService } from './services/publicService/public.service';
+import { RefreshTokenService } from './services/refreshTokenService/refresh-token.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,7 +20,8 @@ export class AppComponent{
   }
   constructor(private router: Router,
     private  publicService: PublicService,
-    private tokenStorage:TokenStorageService) {
+    private tokenStorage:TokenStorageService,
+  private refreshTokenService: RefreshTokenService) {
       if(tokenStorage.getToken()!=null){
         this.getAvatar()
         this.router.events.subscribe((event) => {
@@ -30,6 +32,7 @@ export class AppComponent{
         this.getUser()
         this._isAdmin=tokenStorage.getUser().role=="admin";
       }
+      refreshTokenService.startTimer();
   }
 
   async getAvatar(){
