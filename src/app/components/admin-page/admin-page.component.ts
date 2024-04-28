@@ -175,6 +175,7 @@ export class AdminPageComponent implements OnInit {
           this.creatingUsername = '';
           this.creatingName = '';
           this.creatingSname = '';
+          this.creatingError='Пользователь создан';
           break;
         default:
           this.creatingError = 'Неизвестная ошибка';

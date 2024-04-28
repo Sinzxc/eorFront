@@ -49,7 +49,7 @@ export class TimetablePageComponent implements OnInit {
     });
     
   }
-  async   getGroup() {
+  async getGroup() {
     await this.publicService.getAllGroups().subscribe((newGroups) => {
       this.groups = newGroups;
     });

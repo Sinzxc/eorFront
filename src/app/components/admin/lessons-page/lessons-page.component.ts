@@ -150,9 +150,9 @@ export class LessonsPageComponent {
     this.selectedDateChange=this.selectedDate
   }
   onMainSelectionChange(event: Event) {
-    const selectedDate = this.selectedDate?.fulldate; // Получаем строку даты
+    const selectedDate = this.selectedDate?.fulldate; 
     if (selectedDate) {
-        const date = new Date(selectedDate); // Преобразуем строку в тип Date
+        const date = new Date(selectedDate); 
         this.adminService.getLesson(this.selectedGroup?.name!, date.toISOString().replace('Z', '+00:00')).subscribe((newLesson) => {
             this.lessons = newLesson;
         });
