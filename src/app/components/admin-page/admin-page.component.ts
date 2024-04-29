@@ -8,6 +8,7 @@ import { delay } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Group } from '../../model/Group';
 import { Role } from '../../model/Role';
+import { CSVService } from '../../services/uploadCSV/csv.service';
 
 @Component({
   selector: 'app-admin-page',
@@ -19,6 +20,7 @@ export class AdminPageComponent implements OnInit {
     private router: Router,
     private tokenStorage: TokenStorageService,
     private adminService: AdminService,
+    private csvService: CSVService
   ) {}
 
   isLoggedIn: boolean = false;
@@ -73,7 +75,10 @@ export class AdminPageComponent implements OnInit {
   subjectcreateChanged(): void {
     this.subjectCreating = !this.subjectCreating;
   }
-
+  selectedFile?:File;
+  onFileSelected(event: any) {
+    this.csvService.AddUsersCSV(event.target!.files[0] as File)
+  }
 
   async getUsers() {
     this.adminService.getAllUsers().subscribe((newUsers) => {

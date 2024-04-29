@@ -1,140 +1,278 @@
-<div class="container my-3">      
-    <ul ngbNav #nav="ngbNav" class="nav-tabs">
-        <li ngbNavItem>
-          <a ngbNavLink>Пользователи</a>
-          <ng-template ngbNavContent>
-            <div class="card p-3">
-                <div class="container-fluid">
-                    <div class="row">
-                      <div class="col-12 col-md-4 h-auto d-flex justify-content-between flex-column">
-                        @if (!userCreating) {
-                          <button type="button" class="btn btn-primary w-100 mb-2" (click)="createChanged()">Добавить пользователя</button>
-                        }
-                        @else{
-                          <button type="button" class="btn btn-primary w-100 mb-2" (click)="createChanged()">Изменить пользователя</button>
-                        }
-                        
-                        <select class="form-select h-100" size="5" aria-label="Single select example" [disabled]="userCreating" [(ngModel)]="selectedUser" (ngModelChange)="onSelectionChange($event)">
-                          @for (item of users; track $index) {
-                          <option [ngValue]="item">{{item.person.name+" "+item.person.sname+" "+item.group.name}}</option>
-                          }
-                        </select>
-                        
-                      
-                    </div>
-                        <div class="col-12 col-md-8">
-                            @if(userCreating){
-                              <form>
-                                <div class="mb-3">
-                                  <label for="UsernameInput" class="form-label">Имя польлзователя</label>
-                                  <input type="text" class="form-control" id="UsernameInput" aria-describedby="usernameHelp" [(ngModel)]="this.creatingUsername" [ngModelOptions]="{standalone: true}">
-                                </div>
-                                <div class="mb-3">
-                                  <label for="PasswordInput" class="form-label">Пароль</label>
-                                  <input type="text" class="form-control" id="PasswordInput" aria-describedby="usernameHelp" [(ngModel)]="this.creatingPassword" [ngModelOptions]="{standalone: true}">
-                                </div>
-                                <div class="mb-3">
-                                  <label for="NameInput" class="form-label">Имя</label>
-                                  <input type="text" class="form-control" id="NameInput" [(ngModel)]="this.creatingName" [ngModelOptions]="{standalone: true}">
-                                </div>
-                                <div class="mb-3">
-                                  <label for="SnameInput" class="form-label">Фамилия</label>
-                                  <input type="text" class="form-control" id="SnameInput" [(ngModel)]="this.creatingSname" [ngModelOptions]="{standalone: true}">
-                                </div>
-                                <div class="mb-3">
-                                  <label for="SnameInput" class="form-label">Группа</label>
-                                  <select class="form-select h-100"  [(ngModel)]="createSelectedGroup" (ngModelChange)="onGroupSelectionChange($event)"  [ngModelOptions]="{standalone: true}">
-                                    @for (item of groups; track item) {
-                                      <option [ngValue]="item">{{ item.name }}</option>
-                                    }
-                                  </select>                                   
-                                </div>
-                                <div class="mb-3">
-                                  <label for="SnameInput" class="form-label">Роль</label>
-                                  <select class="form-select h-100"  [(ngModel)]="createSelectedRole" (ngModelChange)="onGroupSelectionChange($event)"  [ngModelOptions]="{standalone: true}">
-                                    @for (item of roles; track item) {
-                                      <option [ngValue]="item">{{ item.name }}</option>
-                                    }
-                                  </select>                                   
-                                </div>
-                                <!-- <div class="mb-3">
+<div class="container my-3">
+  <ul ngbNav #nav="ngbNav" class="nav-tabs">
+    <li ngbNavItem>
+      <a ngbNavLink>Пользователи</a>
+      <ng-template ngbNavContent>
+        <div class="card p-3">
+          <div class="container-fluid">
+            <div class="row">
+              <div
+                class="col-12 col-md-4 h-auto d-flex justify-content-between flex-column"
+              >
+                @if (!userCreating) {
+                <button
+                  type="button"
+                  class="btn btn-primary w-100 mb-2"
+                  (click)="createChanged()"
+                >
+                  Добавить пользователя
+                </button>
+                } @else{
+                <button
+                  type="button"
+                  class="btn btn-primary w-100 mb-2"
+                  (click)="createChanged()"
+                >
+                  Изменить пользователя
+                </button>
+                }
+
+                <select
+                  class="form-select h-100"
+                  size="5"
+                  aria-label="Single select example"
+                  [disabled]="userCreating"
+                  [(ngModel)]="selectedUser"
+                  (ngModelChange)="onSelectionChange($event)"
+                >
+                  @for (item of users; track $index) {
+                  <option [ngValue]="item">
+                    {{
+                      item.person.name +
+                        " " +
+                        item.person.sname +
+                        " " +
+                        item.group.name
+                    }}
+                  </option>
+                  }
+                </select>
+              </div>
+              <div class="col-12 col-md-8">
+                @if(userCreating){
+                <form>
+                  <div class="mb-3">
+                    <label for="UsernameInput" class="form-label"
+                      >Имя польлзователя</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="UsernameInput"
+                      aria-describedby="usernameHelp"
+                      [(ngModel)]="this.creatingUsername"
+                      [ngModelOptions]="{ standalone: true }"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="PasswordInput" class="form-label">Пароль</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="PasswordInput"
+                      aria-describedby="usernameHelp"
+                      [(ngModel)]="this.creatingPassword"
+                      [ngModelOptions]="{ standalone: true }"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="NameInput" class="form-label">Имя</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="NameInput"
+                      [(ngModel)]="this.creatingName"
+                      [ngModelOptions]="{ standalone: true }"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="SnameInput" class="form-label">Фамилия</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="SnameInput"
+                      [(ngModel)]="this.creatingSname"
+                      [ngModelOptions]="{ standalone: true }"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="SnameInput" class="form-label">Группа</label>
+                    <select
+                      class="form-select h-100"
+                      [(ngModel)]="createSelectedGroup"
+                      (ngModelChange)="onGroupSelectionChange($event)"
+                      [ngModelOptions]="{ standalone: true }"
+                    >
+                      @for (item of groups; track item) {
+                      <option [ngValue]="item">{{ item.name }}</option>
+                      }
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="SnameInput" class="form-label">Роль</label>
+                    <select
+                      class="form-select h-100"
+                      [(ngModel)]="createSelectedRole"
+                      (ngModelChange)="onGroupSelectionChange($event)"
+                      [ngModelOptions]="{ standalone: true }"
+                    >
+                      @for (item of roles; track item) {
+                      <option [ngValue]="item">{{ item.name }}</option>
+                      }
+                    </select>
+                  </div>
+                  <!-- <div class="mb-3">
                                   <label for="formFile" class="form-label">Импорт данных из CVS</label>
                                   <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
                                 </div> -->
-                                <button type="submit" class="btn btn-primary" (click)="createUser()">Создать</button>
-                              </form>
-                              @if (creatingError){
-                                <div class="alert alert-danger mt-3" role="alert">
-                                  {{creatingError}}
-                                </div>
-                              }
-                            }
-                            @else{
-                                <form >
-                                  <div class="mb-3" >
-                                    <label for="PassInput" class="form-label">Имя пользователя</label>
-                                    <input type="text" class="form-control" id="PassInput" [disabled]="this.selectedUser==undefined" [(ngModel)]="this.changingUsername" [ngModelOptions]="{standalone: true}">
-                                  </div>
-                                  <div class="mb-3">
-                                    <label for="Pass2Input" class="form-label">Новый пароль (по необходимости)</label>
-                                    <input type="text" class="form-control" id="Pass2Input" [disabled]="this.selectedUser==undefined" [(ngModel)]="this.changingPassword" [ngModelOptions]="{standalone: true}">
-                                  </div>
-                                  <div class="mb-3">
-                                    <label for="NameInput2" class="form-label">Имя</label>
-                                    <input type="text" class="form-control" id="NameInput" [disabled]="this.selectedUser==undefined" [(ngModel)]="this.changingName" [ngModelOptions]="{standalone: true}">
-                                  </div>
-                                  <div class="mb-3">
-                                    <label for="SnameInput2" class="form-label">Фамилия</label>
-                                    <input type="text" class="form-control" id="SnameInput" [disabled]="this.selectedUser==undefined" [(ngModel)]="this.changingSname" [ngModelOptions]="{standalone: true}">
-                                  </div>
-                                   <div class="mb-3">
-                                  <label for="SnameInput" class="form-label">Группа</label>
-                                  <select class="form-select h-100" [(ngModel)]="changeSelectedGroup"  [disabled]="this.selectedUser==undefined"  (ngModelChange)="onGroupSelectionChange($event)"  [ngModelOptions]="{standalone: true}">
-                                    @for (item of groups; track item) {
-                                      <option [ngValue]="item">{{ item.name }}</option>
-                                    }
-                                  </select>                                  
-                                </div>
-                                <div class="mb-3">
-                                  <label for="SnameInput" class="form-label">Роль</label>
-                                  <select class="form-select h-100"  [(ngModel)]="changeSelectedRole" [disabled]="this.selectedUser==undefined" (ngModelChange)="onGroupSelectionChange($event)"  [ngModelOptions]="{standalone: true}">
-                                    @for (item of roles; track item) {
-                                      <option [ngValue]="item">{{ item.name }}</option>
-                                    }
-                                  </select>                                   
-                                </div>
-                                  <button type="submit" class="btn btn-primary" [disabled]="this.selectedUser==undefined" (click)="updateUser()">Изменить</button>
-                                  <button type="submit" class="btn btn-danger mx-3" [disabled]="this.selectedUser==undefined" (click)="deleteUser()">Удалить</button>
-                                </form>
-                                @if (changingError) {
-                                  <div class="alert alert-danger mt-3" role="alert">
-                                    {{changingError}}
-                                  </div>
-                                }
-                            }
-                        </div>
-                    </div>
+                  <div class="wrap d-flex gap-3">
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      (click)="createUser()"
+                    >
+                      Создать
+                    </button>
+                    <input
+                      class="form-control w-auto"
+                      type="file"
+                      id="formFile"
+                      (change)="onFileSelected($event)"
+                      [(ngModel)]="selectedFile"
+                      [ngModelOptions]="{ standalone: true }"
+                      accept=".csv"
+                    />
+                  </div>
+                </form>
+                @if (creatingError){
+                <div class="alert alert-danger mt-3" role="alert">
+                  {{ creatingError }}
                 </div>
+                } } @else{
+                <form>
+                  <div class="mb-3">
+                    <label for="PassInput" class="form-label"
+                      >Имя пользователя</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="PassInput"
+                      [disabled]="this.selectedUser == undefined"
+                      [(ngModel)]="this.changingUsername"
+                      [ngModelOptions]="{ standalone: true }"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="Pass2Input" class="form-label"
+                      >Новый пароль (по необходимости)</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="Pass2Input"
+                      [disabled]="this.selectedUser == undefined"
+                      [(ngModel)]="this.changingPassword"
+                      [ngModelOptions]="{ standalone: true }"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="NameInput2" class="form-label">Имя</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="NameInput"
+                      [disabled]="this.selectedUser == undefined"
+                      [(ngModel)]="this.changingName"
+                      [ngModelOptions]="{ standalone: true }"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="SnameInput2" class="form-label">Фамилия</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="SnameInput"
+                      [disabled]="this.selectedUser == undefined"
+                      [(ngModel)]="this.changingSname"
+                      [ngModelOptions]="{ standalone: true }"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="SnameInput" class="form-label">Группа</label>
+                    <select
+                      class="form-select h-100"
+                      [(ngModel)]="changeSelectedGroup"
+                      [disabled]="this.selectedUser == undefined"
+                      (ngModelChange)="onGroupSelectionChange($event)"
+                      [ngModelOptions]="{ standalone: true }"
+                    >
+                      @for (item of groups; track item) {
+                      <option [ngValue]="item">{{ item.name }}</option>
+                      }
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="SnameInput" class="form-label">Роль</label>
+                    <select
+                      class="form-select h-100"
+                      [(ngModel)]="changeSelectedRole"
+                      [disabled]="this.selectedUser == undefined"
+                      (ngModelChange)="onGroupSelectionChange($event)"
+                      [ngModelOptions]="{ standalone: true }"
+                    >
+                      @for (item of roles; track item) {
+                      <option [ngValue]="item">{{ item.name }}</option>
+                      }
+                    </select>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    [disabled]="this.selectedUser == undefined"
+                    (click)="updateUser()"
+                  >
+                    Изменить
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-danger mx-3"
+                    [disabled]="this.selectedUser == undefined"
+                    (click)="deleteUser()"
+                  >
+                    Удалить
+                  </button>
+                </form>
+                @if (changingError) {
+                <div class="alert alert-danger mt-3" role="alert">
+                  {{ changingError }}
+                </div>
+                } }
+              </div>
             </div>
-          </ng-template>
-        </li>
-        <li ngbNavItem>
-          <a ngbNavLink>Дисциплины</a>
-          <ng-template ngbNavContent>
-            <app-subject-page></app-subject-page>
-          </ng-template>
-        </li>
-        <li ngbNavItem>
-          <a ngbNavLink>Группы</a>
-          <ng-template ngbNavContent>
-            <app-group-page></app-group-page>
-        </ng-template>
-        <li ngbNavItem>
-          <a ngbNavLink>Занятия</a>
-          <ng-template ngbNavContent>
-            <app-lessons-page></app-lessons-page>
-        </ng-template>
-        </li>
-      </ul>
-      <div [ngbNavOutlet]="nav"></div>
-    </div>
+          </div>
+        </div>
+      </ng-template>
+    </li>
+    <li ngbNavItem>
+      <a ngbNavLink>Дисциплины</a>
+      <ng-template ngbNavContent>
+        <app-subject-page></app-subject-page>
+      </ng-template>
+    </li>
+    <li ngbNavItem>
+      <a ngbNavLink>Группы</a>
+      <ng-template ngbNavContent>
+        <app-group-page></app-group-page>
+      </ng-template>
+    </li>
+
+    <li ngbNavItem>
+      <a ngbNavLink>Занятия</a>
+      <ng-template ngbNavContent>
+        <app-lessons-page></app-lessons-page>
+      </ng-template>
+    </li>
+  </ul>
+  <div [ngbNavOutlet]="nav"></div>
+</div>
