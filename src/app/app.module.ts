@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NgForm } from '@angular/forms';
@@ -24,7 +24,8 @@ import { ErrComponent } from './components/err/err.component';
 import { AuthorizePageComponent } from './components/authorize-page/authorize-page.component';
 import { ErrorHandler } from '@angular/core';
 import { GlobalErrorHandler } from './intercept/error';
-import { RefreshTokenModalComponent } from './components/refresh-token-modal/refresh-token-modal.component'; 
+import { RefreshTokenModalComponent } from './components/refresh-token-modal/refresh-token-modal.component';
+import { JournalPageComponent } from './components/journal-page/journal-page.component'; 
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { RefreshTokenModalComponent } from './components/refresh-token-modal/ref
     LessonsPageComponent,
     ErrComponent,
     AuthorizePageComponent,
-    RefreshTokenModalComponent
+    RefreshTokenModalComponent,
+    JournalPageComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,7 @@ import { RefreshTokenModalComponent } from './components/refresh-token-modal/ref
     useClass: TokenInterceptor,
     multi: true
   },
-  { provide: ErrorHandler, useClass: GlobalErrorHandler }],
+  { provide: ErrorHandler, useClass: GlobalErrorHandler, },{ provide: LOCALE_ID, useValue: 'ru-RU'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -161,6 +161,7 @@ export class LessonsPageComponent {
 
 
   async createLesson(){
+    console.log("create Lesson")
     this.creatingError='';
     if((!this.selectedSubjectCreate?.name! || !this.selectedTeacherCreate?.name! || !this.selectedTeacherCreate?.surname!  || !this.selectedDate?.fulldate!||!this.pareCreate!||!this.classRoomCreate||!this.selectedGroupCreate?.name!))
       {

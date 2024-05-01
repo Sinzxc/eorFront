@@ -8,6 +8,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { ErrComponent } from './components/err/err.component';
 import { AuthorizePageComponent } from './components/authorize-page/authorize-page.component';
+import { JournalPageComponent } from './components/journal-page/journal-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'}, // Redirect empty path to '/home'
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'login', component: AuthorizePageComponent}, 
   { path: 'server-error', component: CoursesPageComponent },
   { path: 'admin', component: AdminPageComponent},
+  { path: 'journal', component: JournalPageComponent},
   { path: '**', component: ErrComponent },
 ];
 

@@ -1,0 +1,18 @@
+.table{
+    --bs-table-striped-bg: #D9E0F5
+}
+.table-primary{
+    --bs-table-bg: #a0b1e7;
+}
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-color-type: var(--bs-table-striped-color);
+    --bs-table-bg-type: white;
+}
+.table-striped > tbody > tr:nth-of-type(even) > * {
+    --bs-table-color-type: var(--bs-table-striped-color);
+    --bs-table-bg-type: var(--bs-table-striped-bg);
+}
+
+.bg-5{
+    --bs-table-bg-type: lime
+}
