@@ -6,6 +6,7 @@ import { TimeTableItem } from '../../model/TimeTableItem';
 import { Person } from '../../model/Person';
 import { User } from '../../model/User';
 import { Subject } from '../../model/Subject';
+import { JournalItem } from '../../model/JournalItem';
 
 const BASE_URL = 'http://localhost:3000/api';
 const httpOptions = {
@@ -43,8 +44,8 @@ export class PublicService {
     return this.http.post<string>(BASE_URL + "/public/getUsername", { user }, httpOptions);
   }
 
-  getScores(search:string,date:Date,subject:Subject,group:Group): Observable<any> {
-    return this.http.post<any>(BASE_URL + "/public/getScores", { search,date,subject,group }, httpOptions);
+  getScores(search:string,date:Date,subject:Subject,group:Group): Observable<JournalItem[]> {
+    return this.http.post<JournalItem[]>(BASE_URL + "/public/getScores", { search,date,subject,group }, httpOptions);
   }
 
 }

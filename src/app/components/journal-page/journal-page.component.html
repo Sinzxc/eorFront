@@ -89,51 +89,19 @@
       <thead>
         <tr class="table-primary">
           <th>Студенты</th>
-          <th class="text-center">30.04.2024</th>
-          <th class="text-center">31.04.2024</th>
-          <th class="text-center">01.05.2024</th>
-          <th class="text-center">02.05.2024</th>
-          <th class="text-center">03.05.2024</th>
-          <th class="text-center">04.05.2024</th>
-        </tr>
+          @for (item of dates; track $index) {
+            <th class="text-center">{{item| date: 'dd.MM.yyyy'}}</th>
+          }
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">Абдурахманов Т. К.</th>
-          <td class="text-center">5</td>
-          <td class="text-center">4</td>
-          <td class="text-center">5</td>
-          <td class="text-center">3</td>
-          <td class="text-center">3</td>
-          <td class="text-center">3</td>
-        </tr>
-        <tr>
-          <th scope="row">Абдурахманов Т. К.</th>
-          <td class="text-center">5</td>
-          <td class="text-center">4</td>
-          <td class="text-center">5</td>
-          <td class="text-center">3</td>
-          <td class="text-center">3</td>
-          <td class="text-center">3</td>
-        </tr>
-        <tr>
-          <th scope="row">Абдурахманов Т. К.</th>
-          <td class="text-center">5</td>
-          <td class="text-center">4</td>
-          <td class="text-center">5</td>
-          <td class="text-center">3</td>
-          <td class="text-center">3</td>
-          <td class="text-center">3</td>
-        </tr>
-        <tr>
-          <th scope="row">Абдурахманов Т. К.</th>
-          <td class="text-center">5</td>
-          <td class="text-center">4</td>
-          <td class="text-center">5</td>
-          <td class="text-center">3</td>
-          <td class="text-center">3</td>
-          <td class="text-center">3</td>
-        </tr>
+        @for (journals of journalItems; track $index) {
+          <tr>
+            <th scope="row">{{journals.surname+ " "+journals.name}}</th>
+            @for (item of journals.dates; track $index) {
+              <td class="text-center">{{ item.score ? item.score.value : '-' }}</td>
+            }
+          </tr>
+        }
       </tbody>
     </table>
   </div>

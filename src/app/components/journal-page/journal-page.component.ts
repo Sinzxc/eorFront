@@ -5,6 +5,7 @@ import { PublicService } from '../../services/publicService/public.service';
 import { NgbDate, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
+import { JournalItem } from '../../model/JournalItem';
 @Component({
   selector: 'app-journal-page',
   templateUrl: './journal-page.component.html',
@@ -20,9 +21,16 @@ export class JournalPageComponent implements OnInit {
   searchValue?: string;
   selectedDate?: NgbDate;
 
+  journalItems?:JournalItem[]=[];
+
+  dates:Date[]=[];
+
   async ValueSelected(){
     await this.publicService.getScores(this.searchValue ? this.searchValue: "none" , new Date(this.selectedDate?.year!, this.selectedDate?.month!, this.selectedDate?.day!), this.selectedSubject!, this.selectedGroup!).toPromise().then(result =>{
-      console.log(result);
+      this.journalItems=[]
+      this.journalItems=result!;
+      this.dates=this.findUniqueDates(this.journalItems);
+      console.log(this.journalItems);
     })
   }
 
@@ -52,6 +60,20 @@ export class JournalPageComponent implements OnInit {
       this.selectedSubject=this.subjects[0];
     });
   }
+
+  findUniqueDates(journalItems: JournalItem[]): Date[] {
+    const uniqueDates: Date[] = [];
+
+    journalItems.forEach((journalItem) => {
+      journalItem.dates.forEach((dateObj) => {
+          if (!uniqueDates.includes(dateObj.date)) {
+              uniqueDates.push(dateObj.date);
+          }
+      });
+  });
+
+    return uniqueDates;
+}
 
   
 }
