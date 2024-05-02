@@ -1,60 +1,90 @@
 @if (currentRoute!='/login'&& user) {
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid justify-content-lg-center justify-content-end"> <!-- Добавляем класс justify-content-center для центрирования -->
-      <a class="navbar-brand d-none d-lg-block" routerLink="/home">
-        <img src="../assets/header/logo.svg" alt="">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
-        <span class="navbar-toggler-icon btn-secondary"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mx-auto mb-2 mb-lg-0"> 
-          <li class="nav-item border-bottom">
-            <a class="nav-link d-flex align-items-center d-block d-lg-none m-3" routerLink="/user-profile">
-              <img src="{{profileImageHref}}" class="avatar" alt="Аватар пользователя">
-              <p class="mx-2 mb-0">{{user.name + " " + user.surname}}</p>
-            </a>
-          </li>
-          <li class="nav-item mx-3 my-1 ">
-            <a class="nav-link  " aria-current="page" routerLink="/home">Главная</a>
-          </li>
-          @if (isAdmin) {
-            <li class="nav-item mx-3 my-1 ">
-              <a class="nav-link" aria-current="page" routerLink="/admin">Администрирование</a>
-            </li>
-          }
-          <li class="nav-item mx-3 my-1 ">
-            <a class="nav-link "routerLink="/timetable">Расписание занятий</a>
-          </li>
-          <!-- <li class="nav-item mx-3 my-1">
-            <a class="nav-link" href="#">Электронный журнал</a>
-          </li> -->
-          <li class="nav-item mx-3 my-1">
-            <a class="nav-link" routerLink="/courses">Дисциплины</a>
-          </li>
-          <!-- <li class="nav-item mx-3 my-1">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid justify-content-lg-center justify-content-end">
+    <!-- Добавляем класс justify-content-center для центрирования -->
+    <a class="navbar-brand d-none d-lg-block" routerLink="/home">
+      <img src="../assets/header/logo.svg" alt="" />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Переключатель навигации"
+    >
+      <span class="navbar-toggler-icon btn-secondary"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item border-bottom">
+          <a
+            class="nav-link d-flex align-items-center d-block d-lg-none m-3"
+            routerLink="/user-profile"
+          >
+            <img
+              src="{{ profileImageHref }}"
+              class="avatar"
+              alt="Аватар пользователя"
+            />
+            <p class="mx-2 mb-0">{{ user.name + " " + user.surname }}</p>
+          </a>
+        </li>
+        <li class="nav-item mx-3 my-1">
+          <a class="nav-link" aria-current="page" routerLink="/home">Главная</a>
+        </li>
+        @if (isAdmin) {
+        <li class="nav-item mx-3 my-1">
+          <a class="nav-link" aria-current="page" routerLink="/admin"
+            >Администрирование</a
+          >
+        </li>
+        }
+        <li class="nav-item mx-3 my-1">
+          <a class="nav-link" routerLink="/timetable">Расписание занятий</a>
+        </li>
+        <li class="nav-item mx-3 my-1">
+          <a class="nav-link" routerLink="/journal">Электронный журнал</a>
+        </li>
+        <li class="nav-item mx-3 my-1">
+          <a class="nav-link" routerLink="/courses">Дисциплины</a>
+        </li>
+        <!-- <li class="nav-item mx-3 my-1">
             <a class="nav-link" href="#">Отчёты</a>
           </li>
           <li class="nav-item mx-3 my-1">
             <a class="nav-link" href="#">Настройки</a>
           </li> -->
-        </ul>
-      </div>
-      <div class="profile">
-        <a class="nav-link align-items-center d-none d-lg-flex profile-link" routerLink="/user-profile">
-          <img src="{{profileImageHref}}" class="avatar" alt="Аватар пользователя">
-          <p class="mx-2 mb-0">{{user.name + " " + user.surname}}</p>
-        </a>
-      </div>
+      </ul>
     </div>
-  </nav>
+    <div class="profile">
+      <a
+        class="nav-link align-items-center d-none d-lg-flex profile-link"
+        routerLink="/user-profile"
+      >
+        <img
+          src="{{ profileImageHref }}"
+          class="avatar"
+          alt="Аватар пользователя"
+        />
+        <p class="mx-2 mb-0">{{ user.name + " " + user.surname }}</p>
+      </a>
+    </div>
+  </div>
+</nav>
 }
 <!-- Modal -->
 <ng-container #container>
   <ng-template #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Ошибка</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -62,9 +92,18 @@
       <p>Продлить сессию?</p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Закрыть</button>
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="modal.close('Close click')"
+      >
+        Закрыть
+      </button>
     </div>
   </ng-template>
 </ng-container>
 <router-outlet></router-outlet>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>

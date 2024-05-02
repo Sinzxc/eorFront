@@ -67,6 +67,7 @@
                   aria-label="Поиск..."
                   aria-describedby="basic-addon2"
                   [(ngModel)]="searchValue"
+                  (keyup.enter)="ValueSelected()"
                 />
                 <button
                   class="input-group-text bg-primary text-light"
@@ -90,38 +91,44 @@
         <tr class="table-primary">
           <th>Студенты</th>
           @for (item of dates; track $index) {
-            <th class="text-center">{{item| date: 'dd.MM.yyyy'}}</th>
+          <th class="text-center">{{ item | date : "dd.MM.yyyy" }}</th>
           }
+        </tr>
       </thead>
+
       <tbody>
         @for (journals of journalItems; track $index) {
-          <tr>
-            <th scope="row">{{journals.surname+ " "+journals.name}}</th>
-            @for (item of journals.dates; track $index) {
-              <td class="text-center">{{ item.score ? item.score.value : '-' }}</td>
-            }
-          </tr>
+        <tr>
+          <th scope="row">{{ journals.surname + " " + journals.name }}</th>
+          @for (item of journals.dates; track $index) {
+          <td class="text-center">{{ item.score ? item.score.value : "-" }}</td>
+          }
+        </tr>
         }
       </tbody>
     </table>
   </div>
+  @if(range().length>0){
   <div class="d-flex justify-content-end">
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
+          <a class="page-link" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        @for (item of range(); track $index) {
         <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
+          <a class="page-link">{{ item }}</a>
+        </li>
+        }
+        <li class="page-item">
+          <a class="page-link" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
           </a>
         </li>
       </ul>
     </nav>
   </div>
+  }
 </div>

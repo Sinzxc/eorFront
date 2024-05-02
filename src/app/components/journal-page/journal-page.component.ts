@@ -25,19 +25,25 @@ export class JournalPageComponent implements OnInit {
 
   dates:Date[]=[];
 
+  pagesCount?:number;
+
   async ValueSelected(){
-    await this.publicService.getScores(this.searchValue ? this.searchValue: "none" , new Date(this.selectedDate?.year!, this.selectedDate?.month!, this.selectedDate?.day!), this.selectedSubject!, this.selectedGroup!).toPromise().then(result =>{
+    await this.publicService.getScores(this.searchValue ? this.searchValue: "none" , new Date(this.selectedDate?.year!, this.selectedDate?.month!-1, this.selectedDate?.day!,0,0,0,0), this.selectedSubject!, this.selectedGroup!).toPromise().then(result =>{
       this.journalItems=[]
       this.journalItems=result!;
       this.dates=this.findUniqueDates(this.journalItems);
-      console.log(this.journalItems);
     })
+    this.getPages()
   }
-
+  range(): number[] {
+    return Array.from({length: this.pagesCount!}, (_, i) => i+1);
+  }
   constructor(
    private calendar: NgbCalendar,
    public publicService:PublicService
-  ){}
+  ){
+    
+  }
 
   ngOnInit(): void {
     registerLocaleData(localeRu, 'ru');
@@ -49,7 +55,7 @@ export class JournalPageComponent implements OnInit {
   async getGroup() {
     await this.publicService.getAllGroups().toPromise().then((newGroups) => {
       this.groups = newGroups?.sort();
-      this.groups?.unshift({ name: "Все группы" } as Group);
+      // this.groups?.unshift({ name: "Все группы" } as Group);
       this.selectedGroup = this.groups![0];
     });
   }
@@ -58,7 +64,15 @@ export class JournalPageComponent implements OnInit {
     await this.publicService.getAllSubjects().subscribe((newSubjects) => {
       this.subjects = newSubjects.sort();
       this.selectedSubject=this.subjects[0];
+      this.getPages();
+      this.ValueSelected();
     });
+  }
+  async getPages() {
+    await this.publicService.getPagesCount(this.searchValue ? this.searchValue: "none" , new Date(this.selectedDate?.year!, this.selectedDate?.month!-1, this.selectedDate?.day!,0,0,0,0), this.selectedSubject!, this.selectedGroup!).toPromise().then(result2 =>{
+      this.pagesCount = result2;
+    })
+   
   }
 
   findUniqueDates(journalItems: JournalItem[]): Date[] {

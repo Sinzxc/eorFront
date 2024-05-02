@@ -47,5 +47,8 @@ export class PublicService {
   getScores(search:string,date:Date,subject:Subject,group:Group): Observable<JournalItem[]> {
     return this.http.post<JournalItem[]>(BASE_URL + "/public/getScores", { search,date,subject,group }, httpOptions);
   }
+  getPagesCount(search:string,date:Date,subject:Subject,group:Group): Observable<number> {
+    return this.http.post<number>(BASE_URL + "/public/getScoresPagesCount", { search,date,subject,group }, httpOptions);
+  }
 
 }
