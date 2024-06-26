@@ -26,7 +26,7 @@ jobs:
         run: npm install -g @angular/cli
 
       - name: Build project
-        run: ng build --prod --output-path=dist
+        run: npm run build
 
       - name: Move to docs folder
         run: |
